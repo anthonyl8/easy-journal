@@ -29,6 +29,4 @@ recorded under that day
 - view a slideshow of all recorded events
 - select an event from the past and add an "in hindsight" comment
 - create my own tags and categorize events by my created tags
-- create simple tags for friends/family and categorize events by which friends/
-family members I experienced them with
 - view statistics about my logged events at the aggregate level 
