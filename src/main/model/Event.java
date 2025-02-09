@@ -8,11 +8,11 @@ import java.awt.Image;
 // Number of events recorded is kept track of at the class level.
 public class Event {
 
-    // EFFECTS: Creates a new event with the given title, rating, quote, and image.
-    //          Event is also initialized with an empty list of tags, is initially
-    //          unstarred, and has no hindsight comment. Adds 1 to number of events
-    //          recorded so far, and assigns this new number to be this event's id.
-    //          Updates average number of recorded events accordingly.
+    // EFFECTS: Creates a new event with the given title, rating (out of 10), quote, 
+    //          and image. Event is initially unstarred, has an empty list of tags, 
+    //          and has no hindsight comment. Adds 1 to number of events recorded so 
+    //          far, and assigns this new number to be this event's id. Updates 
+    //          average number of recorded events accordingly.
     public Event(String title, int rating, String quote, Image image) {
         // constructor
     }
