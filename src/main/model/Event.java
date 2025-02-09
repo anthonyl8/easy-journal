@@ -70,6 +70,10 @@ public class Event {
         return null;
     }
 
+    public boolean isStarred() {
+        return false;
+    }
+
     // MODIFIES: this
     // EFFECTS: stars event
     public void markAsStarred() {
