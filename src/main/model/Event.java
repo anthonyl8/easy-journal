@@ -13,7 +13,7 @@ public class Event {
     //          unstarred, and has no hindsight comment. Adds 1 to number of events
     //          recorded so far, and assigns this new number to be this event's id.
     //          Updates average number of recorded events accordingly.
-    public Event() {
+    public Event(String title, int rating, String quote, Image image) {
         // constructor
     }
 
