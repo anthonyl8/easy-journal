@@ -11,8 +11,7 @@ public class Event {
     // EFFECTS: Creates a new event with the given title, rating (out of 10), quote, 
     //          and image. Event is initially unstarred, has an empty list of tags, 
     //          and has no hindsight comment. Adds 1 to number of events recorded so 
-    //          far, and assigns this new number to be this event's id. Updates 
-    //          average number of recorded events accordingly.
+    //          far, and assigns this new number to be this event's id.
     public Event(String title, int rating, String quote, Image image) {
         // constructor
     }
