@@ -1,9 +1,7 @@
 package model;
 
-import java.util.List;
-
 // Represents a tag that users can categorize their events under, with 
-// a name and a list of events categorized under this tag
+// a name and number of events categorized under this tag
 public class Tag {
     
     // EFFECTS: Creates a new tag with given name and no events tagged
@@ -19,22 +17,18 @@ public class Tag {
     public void setName(String name) {
         // stub
     }
-    public List<Event> getEvents() {
+    public int getNumEvents() {
         // stub
-        return null;
+        return 0;
+    }
+
+    public void setNumEvents(int numEvents) {
+        // stub
     }
 
     // MODIFIES: this
-    // EFFECTS: adds event to list of events if it is not already in list of events.
-    //          for each event, resorts list of tags from most used to least used tag
-    //          if necessary
-    public void addEvent(Event event) {
+    // EFFECTS: adds one to number of events categorized under this tag
+    public void addNewEvent() {
         // stub
-    }
-
-    // REQUIRES: total number of events listed > 0
-    // EFFECTS: returns percentage of events under this tag
-    public double getPercentTagged() {
-        return 0.0;
     }
 }
