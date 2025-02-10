@@ -70,18 +70,13 @@ public class Event {
     }
 
     public boolean isStarred() {
+        // stub
         return false;
     }
 
     // MODIFIES: this
-    // EFFECTS: stars event
-    public void markAsStarred() {
-        // stub
-    }
-
-    // MODIFIES: this
-    // EFFECTS: unstars (removes star from) event
-    public void markAsUnstarred() {
+    // EFFECTS: flips starred status of event
+    public void flipStar() {
         // stub
     }
 
