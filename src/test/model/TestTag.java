@@ -9,7 +9,6 @@ public class TestTag {
 
     Tag t1;
     Tag t2;
-    Tag t3;
 
     @BeforeEach
     void runBefore() {
