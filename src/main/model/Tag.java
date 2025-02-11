@@ -4,31 +4,26 @@ package model;
 // a name and number of events categorized under this tag
 public class Tag {
     
+    private String name;
+    private int numEvents;
+
     // EFFECTS: Creates a new tag with given name and no events tagged
     public Tag(String name) {
-        // constructor
+        this.name = name;
+        numEvents = 0;
     }
 
     public String getName() {
-        // stub
-        return "";
+        return name;
     }
 
-    public void setName(String name) {
-        // stub
-    }
     public int getNumEvents() {
-        // stub
-        return 0;
-    }
-
-    public void setNumEvents(int numEvents) {
-        // stub
+        return numEvents;
     }
 
     // MODIFIES: this
     // EFFECTS: adds one to number of events categorized under this tag
     public void addNewEvent() {
-        // stub
+        numEvents++;
     }
 }
