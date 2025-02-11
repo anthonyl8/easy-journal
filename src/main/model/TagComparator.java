@@ -12,8 +12,15 @@ public class TagComparator {
     //          returns 0 if t1 has the same number of events as t2
     //          returns +1 if t1 has a greater number of events than t2
     public int compare(Tag t1, Tag t2) {
-        // stub
-        return 0;
+        int numEventst1 = t1.getNumEvents();
+        int numEventst2 = t2.getNumEvents();
+        if (numEventst1 < numEventst2) {
+            return -1;
+        } else if (numEventst1 == numEventst2) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
 }
