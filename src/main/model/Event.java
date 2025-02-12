@@ -9,9 +9,9 @@ import java.awt.Image;
 public class Event {
 
     // EFFECTS: Creates a new event with the given title, rating (out of 10), quote, 
-    //          and image. Event is initially unstarred, has an empty list of tags, 
-    //          and has no hindsight comment. Adds 1 to number of events recorded so 
-    //          far, and assigns this new number to be this event's id.
+    //          and image. Event is initially unstarred and has an empty list of tags. 
+    //          Adds 1 to number of events recorded so far, and assigns this new number 
+    //          to be this event's id.
     public Event(String title, int rating, String quote, Image image) {
         // constructor
     }
@@ -31,16 +31,9 @@ public class Event {
         return "";
     }
 
-    public void setTitle(String title) {
-        // stub
-    }
     public int getRating() {
         // stub
         return 0;
-    }
-
-    public void setRating(int rating) {
-        // stub
     }
 
     public List<Tag> getTags() {
@@ -50,18 +43,16 @@ public class Event {
 
     // MODIFIES: this
     // EFFECTS: adds given tag to list of tags if it is not already in list of tags,
-    //          ensuring that list of tags is sorted from most used to least used tag
-    public void addTag(Tag tag) {
+    //          returning true if added or false if already in list of tags. resorts
+    //          tags in list of tags and updates number of events tagged in tag
+    public boolean addTag(Tag tag) {
         // stub
+        return false;
     }
 
     public String getQuote() {
         // stub
         return "";
-    }
-
-    public void setQuote(String quote) {
-        // stub
     }
 
     public Image getImage() {
@@ -80,18 +71,9 @@ public class Event {
         // stub
     }
 
-    public String getHindsight() {
-        // stub
-        return "";
-    }
-
-    public void setHindsight(String hindsight) {
-        // stub
-    }
-
     // MODIFIES: this
-    // EFFECTS: reorders list of tags by the number of events under each tag
-    public void sortTagsByPopularity() {
+    // EFFECTS: sorts tags from most used to least used tag
+    public void sortTags() {
         // stub
     }
 }
