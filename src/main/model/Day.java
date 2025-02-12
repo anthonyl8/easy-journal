@@ -6,7 +6,7 @@ import java.util.List;
 public class Day {
     
     // EFFECTS: creates a new day with given year, month, and date, and no events recorded
-    public Day() {
+    public Day(int year, int month, int date) {
         // constructor
     }
 
@@ -47,5 +47,5 @@ public class Day {
         // stub
         return "";
     }
-    
+
 }
