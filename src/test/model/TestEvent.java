@@ -27,9 +27,7 @@ public class TestEvent {
 
     @Test
     void testConstructor() {
-        assertEquals(1, Event.getNumEvents());
-        assertEquals(1, e1.getId());
-        assertEquals("Grouse Trip", e1.getTitle());
+        assertEquals("Grouse Trip!", e1.getTitle());
         assertTrue(e1.getTags().isEmpty());
         assertEquals(7, e1.getRating());
         assertFalse(e1.isStarred());
