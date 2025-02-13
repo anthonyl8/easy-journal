@@ -1,0 +1,84 @@
+package model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
+import java.util.List;
+
+public class TestDay {
+
+    Image grouse;
+    Image eiffelTower;
+    Image tokyoStreet;
+    Day d1;
+    Event e1;
+    Event e2;
+    Event e3;
+
+    @BeforeEach
+    void runBefore() {
+        d1 = new Day(2025, 1, 20);
+        grouse = new ImageIcon("images/grouse-mountain.jpg").getImage();
+        eiffelTower = new ImageIcon("images/eiffel-tower.jpg").getImage();
+        tokyoStreet = new ImageIcon("images/tokyo-street.webp").getImage();
+        e1 = new Event("Grouse Trip!", 7, "Climbed up, watched Indigenous dances, saw first bear!", grouse);
+        e2 = new Event("La Tour Eiffel", 8, "Took the stairs, watched Paris go from day to night. Had a blast!", eiffelTower);
+        e3 = new Event("Tokyo at Night", 8, "This is insane", tokyoStreet);
+    }
+
+    @Test
+    void testConstructor() {
+        assertEquals(2025, d1.getYear());
+        assertEquals(1, d1.getMonth());
+        assertEquals(20, d1.getDate());
+        assertTrue(d1.getEvents().isEmpty());
+    }
+
+    @Test
+    void testAddEvent() {
+        List<Event> d1Events;
+        d1.addEvent(e1);
+        d1Events = d1.getEvents();
+        assertEquals(e1, d1Events.get(0));
+        assertEquals(1, d1Events.size());
+        d1.addEvent(e2);
+        d1Events = d1.getEvents();
+        assertEquals(e1, d1Events.get(0));
+        assertEquals(e2, d1Events.get(1));
+        assertEquals(2, d1Events.size());
+    }
+
+    @Test
+    void testGetMostHighlyRated() {
+        assertEquals(null, d1.getMostHighlyRated());
+        d1.addEvent(e1);
+        assertEquals(e1, d1.getMostHighlyRated());
+        d1.addEvent(e2);
+        assertEquals(e2, d1.getMostHighlyRated());
+        d1.addEvent(e3);
+        assertEquals(e2, d1.getMostHighlyRated());
+    }
+
+    @Test
+    void testGetAverageRating() {
+        assertEquals(0, d1.getAverageRating());
+        d1.addEvent(e1);
+        assertEquals(7, d1.getAverageRating());
+        d1.addEvent(e2);
+        assertEquals(7.5, d1.getMostHighlyRated());
+        d1.addEvent(e3);
+        assertEquals(7.67, d1.getMostHighlyRated());
+    }
+
+    @Test
+    void testToString() {
+        assertEquals("2025-01-25", d1.toString());
+    }
+
+
+}
