@@ -45,6 +45,7 @@ public class Event {
     public boolean addTag(Tag tag) {
         if (!(tags.contains(tag))) {
             tags.add(tag);
+            tag.addNewEvent();
             return true;
         } else {
             return false;
