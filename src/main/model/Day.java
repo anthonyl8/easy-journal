@@ -40,11 +40,11 @@ public class Day {
         return null;
     }
 
-    // EFFECTS: returns average rating of all events recorded under day, or 0 if no
-    //          events recorded
-    public int getAverageRating() {
+    // EFFECTS: returns average rating of all events recorded under day rounded to 
+    //          2 decimal places, or 0 if no events recorded
+    public double getAverageRating() {
         // stub
-        return 0;
+        return 0.0;
     }
     
     // REQUIRES: given month, year, and date form a valid date
