@@ -16,6 +16,9 @@ public class TestDay {
     Image eiffelTower;
     Image tokyoStreet;
     Day d1;
+    Day d2;
+    Day d3;
+    Day d4;
     Event e1;
     Event e2;
     Event e3;
@@ -23,6 +26,9 @@ public class TestDay {
     @BeforeEach
     void runBefore() {
         d1 = new Day(2025, 1, 20);
+        d2 = new Day(2023, 1, 2);
+        d3 = new Day(2024, 10, 3);
+        d4 = new Day(2024, 11, 19);
         grouse = new ImageIcon("images/grouse-mountain.jpg").getImage();
         eiffelTower = new ImageIcon("images/eiffel-tower.jpg").getImage();
         tokyoStreet = new ImageIcon("images/tokyo-street.webp").getImage();
@@ -70,14 +76,17 @@ public class TestDay {
         d1.addEvent(e1);
         assertEquals(7, d1.getAverageRating());
         d1.addEvent(e2);
-        assertEquals(7.5, d1.getMostHighlyRated());
+        assertEquals(7.5, d1.getAverageRating());
         d1.addEvent(e3);
-        assertEquals(7.67, d1.getMostHighlyRated());
+        assertEquals(7.67, d1.getAverageRating());
     }
 
     @Test
     void testToString() {
-        assertEquals("2025-01-25", d1.toString());
+        assertEquals("2025-01-20", d1.toString());
+        assertEquals("2023-01-02", d2.toString());
+        assertEquals("2024-10-03", d3.toString());
+        assertEquals("2024-11-19", d4.toString());
     }
 
 
