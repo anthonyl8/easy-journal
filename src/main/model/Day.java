@@ -27,6 +27,12 @@ public class Day {
         return null;
     }
 
+    // REQUIRES: event is not already in list of events recorded under day
+    // EFFECTS: adds event to list of events recorded under day
+    public void addEvent(Event event) {
+        // stub
+    }
+
     // EFFECTS: returns the event with the highest rating, or 1st event reached if 
     //          multiple are rated the same. if no events, return null
     public Event getMostHighlyRated() {
