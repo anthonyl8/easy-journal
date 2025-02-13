@@ -47,15 +47,18 @@ public class TestEvent {
     void testAddTag() {
         List<Tag> e1Tags;
         assertTrue(e1.addTag(t1));
+        assertEquals(1, t1.getNumEvents());
         e1Tags = e1.getTags();
         assertEquals(t1, e1Tags.get(0));
         assertEquals(1, e1Tags.size());
         assertTrue(e1.addTag(t2));
+        assertEquals(1, t2.getNumEvents());
         e1Tags = e1.getTags();
         assertEquals(t1, e1Tags.get(0));
         assertEquals(t2, e1Tags.get(1));
         assertEquals(2, e1Tags.size());
         assertFalse(e1.addTag(t1));
+        assertEquals(1, t1.getNumEvents());
         e1Tags = e1.getTags();
         assertEquals(t1, e1Tags.get(0));
         assertEquals(t2, e1Tags.get(1));
