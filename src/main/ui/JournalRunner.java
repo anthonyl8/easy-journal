@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -7,12 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
+
 import model.Day;
 import model.Event;
 import model.Tag;
 
 import exceptions.AlreadyAddedException;
 import exceptions.NotYetAddedException;
+import exceptions.RatingOutOfBoundsException;
 
 public class JournalRunner {
 
@@ -83,6 +87,7 @@ public class JournalRunner {
                 break;
             default:
                 System.out.println("Invalid option inputted. Please try again.");
+                break;
         }
         printDivider();
     }
@@ -189,31 +194,111 @@ public class JournalRunner {
     // EFFECTS: enters the loop for the day menu, displaying statistics for the day
     //          and handling/processing inputs for the day menu
     public void enterDayMenu(Day day) {
-        // stub
+        String input = "";
+        while (!input.equals("q")) {
+            printDivider();
+            System.out.println("Date: " + day);
+            System.out.println();
+            System.out.println("Average rating: " + day.getAverageRating() + "/10");
+            System.out.println();
+            viewAllEventTitles(day);
+            displayDayMenu();
+            input = scanner.nextLine();
+            handleDayCommands(input, day);
+        }
     }
 
     // EFFECTS: displays a list of commands that can be used in the menu provided when
     //          under a specific day
     public void displayDayMenu() {
-        // stub
+        System.out.println("Please select an option:\n");
+        
+        System.out.println("[event title]: view specified event");
+        System.out.println("[i]: view most highly rated event in this day");
+        System.out.println("[a]: add an event to this day");
+        System.out.println("[q]: quit this day");
+        printDivider();
     }
 
     // MODIFIES: this
     // EFFECTS: processes the user's input in the day menu
     public void handleDayCommands(String input, Day day) {
-        // stub
+        System.out.print("\n");
+        for (Event event : day.getEvents()) {
+            String title = event.getTitle();
+            if (title.equals(input)) {
+                enterEventMenu(event);
+                return;
+            }
+        }
+        switch (input) {
+            case "i":
+                viewHighlight(day);
+                break;
+            case "a":
+                addEvent(day);
+                break;
+            case "q":
+                break;
+            default:
+                System.out.println("Invalid option inputted. Please try again.");
+                break;
+        }
+        printDivider();
     }
 
     // EFFECTS: prints all the events recorded under the given day. if nothing recorded
     //          yet, print that nothing was recorded so far.
     public void viewAllEventTitles(Day day) {
-        // stub
+        List<Event> events = day.getEvents();
+        if (events.isEmpty()) {
+            System.out.println("Nothing recorded so far. Go have some fun!");
+        } else {
+            System.out.println("Events recorded so far:");
+            for (Event event : events) {
+                System.out.print(event.getTitle());
+                if (event.isStarred()) {
+                    System.out.println(" *");
+                } else {
+                    System.out.println();
+                }
+            }
+            System.out.println();
+        }
+        printDivider();
     }
 
     // MODIFIES: this
     // EFFECTS: uses user input to create a new event under the given day
     public void addEvent(Day day) {
-        // stub
+        printDivider();
+        System.out.println("Please fill out the following fields: ");
+        System.out.print("Event title: ");
+        String title = this.scanner.nextLine();
+        int rating;
+        while (true) {
+            try {
+                System.out.print("Rating (from 1 to 10): ");
+                String input = this.scanner.nextLine();
+                rating = Integer.valueOf(input);
+                if (rating < 1 || rating > 10) {
+                    throw new RatingOutOfBoundsException();
+                }
+                break;
+            } catch (NumberFormatException | RatingOutOfBoundsException e) {
+                System.out.println("You did not input an integer from 1 to 10. Try again.");
+            }
+        }
+
+        System.out.print("Quote: ");
+        String quote = this.scanner.nextLine();
+        System.out.print("Image (file path): ");
+        Image image = new ImageIcon(this.scanner.nextLine()).getImage();
+
+        Event event = new Event(title, rating, quote, image);
+        day.addEvent(event);
+        System.out.println("Event successfully added!"); 
+        printDivider();
     }
 
     // EFFECTS: enters the loop for the event menu, displaying the event's characteristics
