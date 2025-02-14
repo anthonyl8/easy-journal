@@ -15,7 +15,6 @@ import model.Event;
 import model.Tag;
 
 import exceptions.AlreadyAddedException;
-import exceptions.NotYetAddedException;
 import exceptions.RatingOutOfBoundsException;
 
 // SOURCE: There are many in-class sources I could have based my code off of. 
