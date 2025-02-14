@@ -55,6 +55,7 @@ public class JournalRunner {
         sdf.setLenient(false);
     }
 
+    // MODIFIES: this
     // EFFECTS: displays and processes inputs for the main menu
     public void handleMenu() {
         displayMenu();
@@ -73,6 +74,7 @@ public class JournalRunner {
         printDivider();
     }
 
+    // MODIFIES: this
     // EFFECTS: processes the user's input in the main menu
     public void processMenuCommands(String input) {
         printDivider();
@@ -133,9 +135,10 @@ public class JournalRunner {
     }
 
     // REQUIRES: date is entered in the valid YYYY-MM-DD format
+    // MODIFIES: this
     // EFFECTS: creates a new day with the given year, month, and date, and adds
-    // this day
-    // to list of days. if day has already been added, throws AlreadyAddedException
+    //          this day to list of days. if day has already been added, throws 
+    //          AlreadyAddedException
     public void recordDay(String yearMonthDate) throws AlreadyAddedException {
         if (dateRecord(yearMonthDate) != null) {
             throw new AlreadyAddedException();
@@ -152,7 +155,7 @@ public class JournalRunner {
     }
 
     // EFFECTS: returns corresponding day if given date has already been recorded,
-    // otherwise returns null
+    //          otherwise returns null
     public Day dateRecord(String yearMonthDate) {
         String[] splitDate = yearMonthDate.split("-");
         int year = Integer.valueOf(splitDate[0]);
@@ -166,6 +169,7 @@ public class JournalRunner {
         return null;
     }
 
+    // MODIFIES: this
     // EFFECTS: allows user to select a day that has already been added
     public void selectDay() {
         if (days.isEmpty()) {
@@ -175,9 +179,9 @@ public class JournalRunner {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: if user inputs a valid date, sends the user to the corresponding
-    // date.
-    // otherwise, prompts the user to re-enter a date
+    //          date. otherwise, prompts the user to re-enter a date
     @SuppressWarnings("methodlength")
     public void handleDateInput() {
         String yearMonthDate;
@@ -206,8 +210,9 @@ public class JournalRunner {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: enters the loop for the day menu, displaying statistics for the day
-    // and handling/processing inputs for the day menu
+    //          and handling/processing inputs for the day menu
     public void enterDayMenu(Day day) {
         String input = "";
         while (!input.equals("q")) {
@@ -223,8 +228,7 @@ public class JournalRunner {
     }
 
     // EFFECTS: displays a list of commands that can be used in the menu provided
-    // when
-    // under a specific day
+    //          when under a specific day
     public void displayDayMenu() {
         System.out.println("Please select an option:\n");
 
@@ -261,7 +265,7 @@ public class JournalRunner {
     }
 
     // EFFECTS: prints all the events recorded under the given day. if nothing
-    // recorded yet, print that nothing was recorded so far.
+    //          recorded yet, print that nothing was recorded so far.
     public void viewAllEventTitles(Day day) {
         List<Event> events = day.getEvents();
         if (events.isEmpty()) {
@@ -314,9 +318,9 @@ public class JournalRunner {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: enters the loop for the event menu, displaying the event's
-    // characteristics
-    // and handling/processing inputs for the event menu
+    //          characteristics and handling/processing inputs for the event menu
     public void enterEventMenu(Event event) {
         String input = "";
         while (!(input.equals("q"))) {
@@ -341,13 +345,12 @@ public class JournalRunner {
         }
         System.out.println("Rating (out of 10): " + event.getRating());
         System.out.println("Quote: " + event.getQuote());
-        // !!! IMAGE
+        // display image later on
         printDivider();
     }
 
     // EFFECTS: prints the event's title, including a star depending on whether the
-    // event
-    // is starred
+    //          event is starred
     public void printTitle(Event event) {
         System.out.print(event.getTitle());
         if (event.isStarred()) {
@@ -362,8 +365,9 @@ public class JournalRunner {
         System.out.print(tag.getName() + " (" + tag.getNumEvents() + ")   ");
     }
 
+    // MODIFIES: this
     // EFFECTS: obtains and enters into the most highly rated event recorded under
-    // this day
+    //          this day
     public void viewHighlight(Day day) {
         printDivider();
         Event event = day.getMostHighlyRated();
@@ -376,8 +380,7 @@ public class JournalRunner {
     }
 
     // EFFECTS: displays a list of commands that can be used in the menu provided
-    // when
-    // under a specific event
+    //          when under a specific event
     public void displayEventMenu() {
         System.out.println("Please select an option:\n");
 
@@ -409,8 +412,8 @@ public class JournalRunner {
 
     // MODIFIES: this
     // EFFECTS: adds a tag to the given event, creating a new tag if the tag doesn't
-    // already exist. if given event is already tagged under tag, then
-    // does nothing (does not add a duplicate tag)
+    //          already exist. if given event is already tagged under tag, then
+    //          does nothing (does not add a duplicate tag)
     public void addTag(Event event) {
         printDivider();
         System.out.print("Enter the name of the tag: ");
@@ -431,7 +434,7 @@ public class JournalRunner {
     }
 
     // EFFECTS: returns the tag whose name matches the given tag name, or null if no
-    // tag's name matches the given tag name
+    //          tag's name matches the given tag name
     public Tag existingTag(String tagName) {
         Tag existing = null;
         for (Tag tag : tags) {
@@ -467,8 +470,7 @@ public class JournalRunner {
 
     // REQUIRES: at least one day in list of days
     // EFFECTS: gets top 3 days with most events recorded under them, or all days in
-    // list
-    // (depending on which one is smaller)
+    //          list (depending on which one is smaller)
     public List<Day> getMostEventfulDays() {
         days.sort((Day d1, Day d2) -> {
             return d2.getNumEvents() - d1.getNumEvents();
@@ -492,8 +494,7 @@ public class JournalRunner {
 
     // REQUIRES: at least one day in list of days
     // EFFECTS: gets top 3 most highly rated days in list of days, or all days in
-    // list
-    // (depending on which one is smaller)
+    //          list (depending on which one is smaller)
     public List<Day> getTopDays() {
         days.sort((Day d1, Day d2) -> {
             return Double.compare(d2.getAverageRating(), d1.getAverageRating());
@@ -518,7 +519,7 @@ public class JournalRunner {
 
     // REQUIRES: at least one tag in list of tags
     // EFFECTS: gets top 3 most used tags in list of tags, or all tags in list
-    // (depending on which one is smaller)
+    //          (depending on which one is smaller)
     public List<Tag> getTopTags() {
         tags.sort((Tag t1, Tag t2) -> {
             return t2.getNumEvents() - t1.getNumEvents();
