@@ -210,7 +210,7 @@ public class JournalRunner {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, day
     // EFFECTS: enters the loop for the day menu, displaying statistics for the day
     //          and handling/processing inputs for the day menu
     public void enterDayMenu(Day day) {
@@ -239,7 +239,7 @@ public class JournalRunner {
         printDivider();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, day
     // EFFECTS: processes the user's input in the day menu
     public void handleDayCommands(String input, Day day) {
         for (Event event : day.getEvents()) {
@@ -280,7 +280,7 @@ public class JournalRunner {
         printDivider();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, day
     // EFFECTS: uses user input to create a new event under the given day
     public void addEvent(Day day) {
         printDivider();
@@ -318,7 +318,7 @@ public class JournalRunner {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, event
     // EFFECTS: enters the loop for the event menu, displaying the event's
     //          characteristics and handling/processing inputs for the event menu
     public void enterEventMenu(Event event) {
@@ -365,7 +365,7 @@ public class JournalRunner {
         System.out.print(tag.getName() + " (" + tag.getNumEvents() + ")   ");
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, day
     // EFFECTS: obtains and enters into the most highly rated event recorded under
     //          this day
     public void viewHighlight(Day day) {
@@ -390,7 +390,7 @@ public class JournalRunner {
         printDivider();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, event
     // EFFECTS: processes the user's input in the event menu
     public void handleEventCommands(String input, Event event) {
         switch (input) {
@@ -410,7 +410,7 @@ public class JournalRunner {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, event
     // EFFECTS: adds a tag to the given event, creating a new tag if the tag doesn't
     //          already exist. if given event is already tagged under tag, then
     //          does nothing (does not add a duplicate tag)
