@@ -257,11 +257,7 @@ public class JournalRunner {
             System.out.println("Events recorded so far:");
             for (Event event : events) {
                 System.out.print(event.getTitle());
-                if (event.isStarred()) {
-                    System.out.println(" *");
-                } else {
-                    System.out.println();
-                }
+                printTitle(event);
             }
             System.out.println();
         }
@@ -304,29 +300,78 @@ public class JournalRunner {
     // EFFECTS: enters the loop for the event menu, displaying the event's characteristics
     //          and handling/processing inputs for the event menu
     public void enterEventMenu(Event event) {
-        // stub
+        String input = "";
+        while (!(input.equals("q"))) {
+            viewEvent(event);
+            displayEventMenu();
+            input = this.scanner.nextLine();
+            handleEventCommands(input, event);
+        }
     }
 
     // EFFECTS: prints the characteristics of the event
     public void viewEvent(Event event) {
+        printDivider();
+        printTitle(event);
+        event.sortTags();
+        List<Tag> tags = event.getTags();
+        if (!(tags.isEmpty())) {
+            System.out.print("TAGGED UNDER: ");
+            for (Tag tag : tags) {
+                System.out.print(tag.getName() + " (" + tag.getNumEvents() + ")   ");
+            }
+            System.out.println();
+        }
+        System.out.println("Rating (out of 10): " + event.getRating());
+        System.out.println("Quote: " + event.getQuote());
+        // !!! IMAGE
+        printDivider();
+    }
+
+    // EFFECTS: prints the event's title, including a star depending on whether the event
+    //          is starred
+    public void printTitle(Event event) {
         // stub
     }
 
     // EFFECTS: obtains and enters into the most highly rated event recorded under this day
     public void viewHighlight(Day day) {
-        // stub
+        Event event = day.getMostHighlyRated();
+        if (event == null) {
+            System.out.println("Nothing recorded yet!");
+        } else {
+            enterEventMenu(event);
+        }
     }
 
     // EFFECTS: displays a list of commands that can be used in the menu provided when
     //          under a specific event
     public void displayEventMenu() {
-        // stub
+        System.out.println("Please select an option:\n");
+        
+        System.out.println("[a]: add a tag");
+        System.out.println("[s]: star or unstar this event");
+        System.out.println("[q]: quit this event");
+        printDivider();
     }
 
     // MODIFIES: this
     // EFFECTS: processes the user's input in the event menu
     public void handleEventCommands(String input, Event event) {
-        // stub
+        switch (input) {
+            case "a":
+                addTag(event);
+                break;
+            case "s":
+                event.flipStar();
+                break;
+            case "q":
+                break;
+            default:
+                System.out.println("Invalid option inputted!");
+                break;
+        }
+        printDivider();
     }
 
     // MODIFIES: this
@@ -334,6 +379,26 @@ public class JournalRunner {
     //          already exist. if given event is already tagged under tag, then 
     //          does nothing (does not add a duplicate tag)
     public void addTag(Event event) {
+        System.out.print("Enter the name of the tag: ");
+        String tagName = this.scanner.nextLine();
+        Tag tagToAdd = existingTag(tagName);
+        if (tagToAdd == null) {
+            tagToAdd = new Tag(tagName);
+            tags.add(tagToAdd);
+        }
+
+        if (event.addTag(tagToAdd)) {
+            System.out.println("Tag successfully added!");
+        } else {
+            System.out.println("Tag already added!");
+        }
+        
+        printDivider();
+    }
+
+    // EFFECTS: returns the tag whose name matches the given tag name, or null if no 
+    //          tag's name matches the given tag name
+    public Tag existingTag(String tagName) {
         // stub
     }
 
