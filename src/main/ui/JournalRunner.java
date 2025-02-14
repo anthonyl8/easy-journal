@@ -180,19 +180,18 @@ public class JournalRunner {
                 }
                 printDivider();
                 yearMonthDate = this.scanner.nextLine();
+                printDivider();
                 try {
                     sdf.parse(yearMonthDate);
                     recordedDay = dateRecord(yearMonthDate);
                     if (recordedDay == null) {
-                        throw new NotYetAddedException();
+                        System.out.println("You haven't added that date yet!");
                     } else {
                         enterDayMenu(recordedDay);
                         break;
                     }
                 } catch (ParseException e) {
-                    System.out.println("You typed an invalid date!");
-                } catch (NotYetAddedException e) {
-                    System.out.println("You haven't added that date yet!");
+                    System.out.println("You typed an invalid date!"); 
                 }
                 printDivider();
             }
@@ -204,7 +203,6 @@ public class JournalRunner {
     public void enterDayMenu(Day day) {
         String input = "";
         while (!input.equals("q")) {
-            printDivider();
             System.out.println("Date: " + day);
             System.out.println();
             System.out.println("Average rating: " + day.getAverageRating() + "/10");
@@ -231,7 +229,7 @@ public class JournalRunner {
     // MODIFIES: this
     // EFFECTS: processes the user's input in the day menu
     public void handleDayCommands(String input, Day day) {
-        System.out.print("\n");
+        printDivider();
         for (Event event : day.getEvents()) {
             String title = event.getTitle();
             if (title.equals(input)) {
@@ -274,7 +272,6 @@ public class JournalRunner {
     // MODIFIES: this
     // EFFECTS: uses user input to create a new event under the given day
     public void addEvent(Day day) {
-        printDivider();
         System.out.println("Please fill out the following fields: ");
         System.out.print("Event title: ");
         String title = this.scanner.nextLine();
@@ -318,7 +315,6 @@ public class JournalRunner {
 
     // EFFECTS: prints the characteristics of the event
     public void viewEvent(Event event) {
-        printDivider();
         printTitle(event);
         event.sortTags();
         List<Tag> tags = event.getTags();
