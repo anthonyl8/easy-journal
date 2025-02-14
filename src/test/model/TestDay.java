@@ -46,6 +46,15 @@ public class TestDay {
     }
 
     @Test
+    void testGetNumEvents() {
+        assertEquals(0, d1.getNumEvents());
+        d1.addEvent(e1);
+        assertEquals(1, d1.getNumEvents());
+        d1.addEvent(e2);
+        assertEquals(2, d1.getNumEvents());
+    }
+
+    @Test
     void testAddEvent() {
         List<Event> d1Events;
         d1.addEvent(e1);
