@@ -5,16 +5,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
+// import java.awt.Image;
+// import javax.swing.ImageIcon;
 
 import java.util.List;
 
 public class TestDay {
 
-    Image grouse;
-    Image eiffelTower;
-    Image tokyoStreet;
+    // Image grouse;
+    // Image eiffelTower;
+    // Image tokyoStreet;
     Day d1;
     Day d2;
     Day d3;
@@ -29,12 +29,12 @@ public class TestDay {
         d2 = new Day(2023, 1, 2);
         d3 = new Day(2024, 10, 3);
         d4 = new Day(2024, 11, 19);
-        grouse = new ImageIcon("images/grouse-mountain.jpg").getImage();
-        eiffelTower = new ImageIcon("images/eiffel-tower.jpg").getImage();
-        tokyoStreet = new ImageIcon("images/tokyo-street.webp").getImage();
-        e1 = new Event("Grouse Trip!", 7, "Climbed up, watched Indigenous dances, saw first bear!", grouse);
-        e2 = new Event("La Tour Eiffel", 8, "Took the stairs, watched Paris go from day to night. Had a blast!", eiffelTower);
-        e3 = new Event("Tokyo at Night", 8, "This is insane", tokyoStreet);
+        // grouse = new ImageIcon("images/grouse-mountain.jpg").getImage();
+        // eiffelTower = new ImageIcon("images/eiffel-tower.jpg").getImage();
+        // tokyoStreet = new ImageIcon("images/tokyo-street.webp").getImage();
+        e1 = new Event("Grouse Trip!", 7, "Climbed up, watched Indigenous dances, saw first bear!" /* , grouse */);
+        e2 = new Event("La Tour Eiffel", 8, "Took the stairs, watched Parisian sunset!" /* , eiffelTower */);
+        e3 = new Event("Tokyo at Night", 8, "This is insane" /* , tokyoStreet */);
     }
 
     @Test
