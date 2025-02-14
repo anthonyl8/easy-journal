@@ -348,7 +348,7 @@ public class JournalRunner {
 
     // EFFECTS: prints a tag and the number of events under the tagged
     public void printTag(Tag tag) {
-       // stub
+        System.out.print(tag.getName() + " (" + tag.getNumEvents() + ")   ");
     }
 
     // EFFECTS: obtains and enters into the most highly rated event recorded under this day
