@@ -216,6 +216,42 @@ public class JournalRunner {
         // stub
     }
 
+    // EFFECTS: enters the loop for the event menu, displaying the event's characteristics
+    //          and handling/processing inputs for the event menu
+    public void enterEventMenu(Event event) {
+        // stub
+    }
+
+    // EFFECTS: prints the characteristics of the event
+    public void viewEvent(Event event) {
+        // stub
+    }
+
+    // EFFECTS: obtains and enters into the most highly rated event recorded under this day
+    public void viewHighlight(Day day) {
+        // stub
+    }
+
+    // EFFECTS: displays a list of commands that can be used in the menu provided when
+    //          under a specific event
+    public void displayEventMenu() {
+        // stub
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes the user's input in the event menu
+    public void handleEventCommands(String input, Event event) {
+        // stub
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds a tag to the given event, creating a new tag if the tag doesn't
+    //          already exist. if given event is already tagged under tag, then 
+    //          does nothing (does not add a duplicate tag)
+    public void addTag(Event event) {
+        // stub
+    }
+
     // MODIFIES: this
     // EFFECTS: prints a closing message and marks the program as not running
     public void quitApplication() {
