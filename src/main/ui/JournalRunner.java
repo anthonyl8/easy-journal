@@ -325,7 +325,7 @@ public class JournalRunner {
         if (!(tags.isEmpty())) {
             System.out.print("TAGGED UNDER: ");
             for (Tag tag : tags) {
-                System.out.print(tag.getName() + " (" + tag.getNumEvents() + ")   ");
+                printTag(tag);
             }
             System.out.println();
         }
@@ -344,6 +344,11 @@ public class JournalRunner {
         } else {
             System.out.println();
         }
+    }
+
+    // EFFECTS: prints a tag and the number of events under the tagged
+    public void printTag(Tag tag) {
+       // stub
     }
 
     // EFFECTS: obtains and enters into the most highly rated event recorded under this day
@@ -423,46 +428,84 @@ public class JournalRunner {
 
     // EFFECTS: prints aggregate level statistics about user's journal
     public void displayStatistics() {
-        // stub
+        displayMostEventfulDays();
+        System.out.println();
+        displayBestDays();
+        System.out.println();
+        displayMostUsedTags();
     }
 
     // EFFECTS: prints days in user's journal with most events recorded
     public void displayMostEventfulDays() {
-        // stub
+        System.out.println("Most eventful days: ");
+        if (days.isEmpty()) {
+            System.out.println("No days recorded yet! Go wild!");
+        } else {
+            List<Day> busiestDays = getMostEventfulDays();
+            for (Day day : busiestDays) {
+                System.out.println(day + " (" + day.getNumEvents() + ")");
+            }
+        }
     }
 
     // REQUIRES: at least one day in list of days
     // EFFECTS: gets top 3 days with most events recorded under them, or all days in list 
     //          (depending on which one is smaller)
     public List<Day> getMostEventfulDays() {
-        // stub
-        return null;
+        days.sort((Day d1, Day d2) -> {
+            return d2.getNumEvents() - d1.getNumEvents();
+        });
+        int end = Math.min(3, days.size());
+        return days.subList(0, end);
     }
 
     // EFFECTS: prints most highly rated days in user's journal
     public void displayBestDays() {
-        // stub
+        System.out.println("Top days: ");
+        if (days.isEmpty()) {
+            System.out.println("No days recorded yet! Go wild!");
+        } else {
+            List<Day> topDays = getTopDays();
+            for (Day day : topDays) {
+                System.out.println(day + " (" + day.getAverageRating() + "/10)");
+            }
+        }
     }
 
     // REQUIRES: at least one day in list of days
     // EFFECTS: gets top 3 most highly rated days in list of days, or all days in list 
     //          (depending on which one is smaller)
     public List<Day> getTopDays() {
-        // stub
-        return null;
+        days.sort((Day d1, Day d2) -> {
+            return Double.compare(d2.getAverageRating(), d1.getAverageRating());
+        });
+        int end = Math.min(3, days.size());
+        return days.subList(0, end);
     }
 
     // EFFECTS: prints most used tags for user's journal
     public void displayMostUsedTags() {
-        // stub
+        System.out.println("Top tags: ");
+        if (tags.isEmpty()) {
+            System.out.println("No tags used yet! Go wild!");
+        } else {
+            List<Tag> topTags = getTopTags();
+            for (Tag tag : topTags) {
+                printTag(tag);
+            }
+            System.out.println();
+        }
     }
 
     // REQUIRES: at least one tag in list of tags
     // EFFECTS: gets top 3 most used tags in list of tags, or all tags in list 
     //          (depending on which one is smaller)
     public List<Tag> getTopTags() {
-        // stub
-        return null;
+        tags.sort((Tag t1, Tag t2) -> {
+            return t2.getNumEvents() - t1.getNumEvents();
+        });
+        int end = Math.min(3, tags.size());
+        return tags.subList(0, end);
     }
 
     // MODIFIES: this
