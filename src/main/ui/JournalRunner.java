@@ -87,6 +87,9 @@ public class JournalRunner {
             case "s":
                 selectDay();
                 break;
+            case "n":
+                displayStatistics();
+                break;
             case "q":
                 quitApplication();
                 break;
@@ -416,6 +419,50 @@ public class JournalRunner {
             }
         }
         return existing;
+    }
+
+    // EFFECTS: prints aggregate level statistics about user's journal
+    public void displayStatistics() {
+        // stub
+    }
+
+    // EFFECTS: prints days in user's journal with most events recorded
+    public void displayMostEventfulDays() {
+        // stub
+    }
+
+    // REQUIRES: at least one day in list of days
+    // EFFECTS: gets top 3 days with most events recorded under them, or all days in list 
+    //          (depending on which one is smaller)
+    public List<Day> getMostEventfulDays() {
+        // stub
+        return null;
+    }
+
+    // EFFECTS: prints most highly rated days in user's journal
+    public void displayBestDays() {
+        // stub
+    }
+
+    // REQUIRES: at least one day in list of days
+    // EFFECTS: gets top 3 most highly rated days in list of days, or all days in list 
+    //          (depending on which one is smaller)
+    public List<Day> getTopDays() {
+        // stub
+        return null;
+    }
+
+    // EFFECTS: prints most used tags for user's journal
+    public void displayMostUsedTags() {
+        // stub
+    }
+
+    // REQUIRES: at least one tag in list of tags
+    // EFFECTS: gets top 3 most used tags in list of tags, or all tags in list 
+    //          (depending on which one is smaller)
+    public List<Tag> getTopTags() {
+        // stub
+        return null;
     }
 
     // MODIFIES: this
