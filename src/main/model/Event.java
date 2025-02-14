@@ -17,13 +17,13 @@ public class Event {
 
     // EFFECTS: Creates a new event with the given title, rating (out of 10), quote, 
     //          and image. Event is initially unstarred and has an empty list of tags.
-    public Event(String title, int rating, String quote, Image image) {
+    public Event(String title, int rating, String quote /* , Image image */) {
         this.title = title;
         this.tags = new ArrayList<Tag>();
         this.rating = rating;
         starred = false;
         this.quote = quote;
-        this.image = image;
+        // this.image = image;
     }
 
     public String getTitle() {
@@ -56,9 +56,9 @@ public class Event {
         return quote;
     }
 
-    public Image getImage() {
-        return image;
-    }
+    // public Image getImage() {
+    //     return image;
+    // }
 
     public boolean isStarred() {
         return starred;

@@ -36,6 +36,10 @@ public class Day {
         return events;
     }
 
+    public int getNumEvents() {
+        return events.size();
+    }
+
     // REQUIRES: event is not already in list of events recorded under day
     // EFFECTS: adds event to list of events recorded under day
     public void addEvent(Event event) {
@@ -75,7 +79,7 @@ public class Day {
                 totalRating += event.getRating();
             }
             double average = (double) totalRating / events.size();
-            average = Math.round(average * 100.0)/100.0;
+            average = Math.round(average * 100.0) / 100.0;
             return average;
         }
     }
