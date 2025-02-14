@@ -261,7 +261,6 @@ public class JournalRunner {
         } else {
             System.out.println("Events recorded so far:");
             for (Event event : events) {
-                System.out.print(event.getTitle());
                 printTitle(event);
             }
             System.out.println();
@@ -336,7 +335,12 @@ public class JournalRunner {
     // EFFECTS: prints the event's title, including a star depending on whether the event
     //          is starred
     public void printTitle(Event event) {
-        // stub
+        System.out.print(event.getTitle());
+        if (event.isStarred()) {
+            System.out.println(" *");
+        } else {
+            System.out.println();
+        }
     }
 
     // EFFECTS: obtains and enters into the most highly rated event recorded under this day
@@ -404,7 +408,14 @@ public class JournalRunner {
     // EFFECTS: returns the tag whose name matches the given tag name, or null if no 
     //          tag's name matches the given tag name
     public Tag existingTag(String tagName) {
-        // stub
+        Tag existing = null;
+        for (Tag tag : tags) {
+            if (tag.getName().equals(tagName)) {
+                existing = tag;
+                break;
+            }
+        }
+        return existing;
     }
 
     // MODIFIES: this
