@@ -18,6 +18,11 @@ import exceptions.AlreadyAddedException;
 import exceptions.NotYetAddedException;
 import exceptions.RatingOutOfBoundsException;
 
+// SOURCE: There are many in-class sources I could have based my code off of. 
+//         I found Lab 4: Flashcard Reviewer particularly helpful, so that's 
+//         the one I chose.
+
+// Represents an instance of the console based UI for EasyJournal.
 public class JournalRunner {
 
     private List<Day> days;
