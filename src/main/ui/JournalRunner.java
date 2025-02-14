@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.Image;
+// import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.ImageIcon;
+// import javax.swing.ImageIcon;
 
 import model.Day;
 import model.Event;
@@ -228,7 +228,6 @@ public class JournalRunner {
     // MODIFIES: this
     // EFFECTS: processes the user's input in the day menu
     public void handleDayCommands(String input, Day day) {
-        printDivider();
         for (Event event : day.getEvents()) {
             String title = event.getTitle();
             if (title.equals(input)) {
@@ -249,7 +248,6 @@ public class JournalRunner {
                 System.out.println("Invalid option inputted. Please try again.");
                 break;
         }
-        printDivider();
     }
 
     // EFFECTS: prints all the events recorded under the given day. if nothing recorded
@@ -271,6 +269,7 @@ public class JournalRunner {
     // MODIFIES: this
     // EFFECTS: uses user input to create a new event under the given day
     public void addEvent(Day day) {
+        printDivider();
         System.out.println("Please fill out the following fields: ");
         System.out.print("Event title: ");
         String title = this.scanner.nextLine();
@@ -280,9 +279,7 @@ public class JournalRunner {
                 System.out.print("Rating (from 1 to 10): ");
                 String input = this.scanner.nextLine();
                 rating = Integer.valueOf(input);
-                if (rating < 1 || rating > 10) {
-                    throw new RatingOutOfBoundsException();
-                }
+                checkRatingIsValid(rating);
                 break;
             } catch (NumberFormatException | RatingOutOfBoundsException e) {
                 System.out.println("You did not input an integer from 1 to 10. Try again.");
@@ -291,15 +288,22 @@ public class JournalRunner {
 
         System.out.print("Quote: ");
         String quote = this.scanner.nextLine();
-        System.out.print("Image (file path): ");
-        Image image = new ImageIcon(this.scanner.nextLine()).getImage();
+        // System.out.print("Image (file path): ");
+        // Image image = new ImageIcon(this.scanner.nextLine()).getImage();
 
-        Event event = new Event(title, rating, quote, image);
+        Event event = new Event(title, rating, quote /*, image  */);
         day.addEvent(event);
         System.out.println("Event successfully added!"); 
         printDivider();
     }
 
+    // EFFECTS: throws exception if rating is out of bounds, otherwise do nothing
+    public void checkRatingIsValid(int rating) throws RatingOutOfBoundsException {
+        if (rating < 1 || rating > 10) {
+            throw new RatingOutOfBoundsException();
+        }
+    }
+    
     // EFFECTS: enters the loop for the event menu, displaying the event's characteristics
     //          and handling/processing inputs for the event menu
     public void enterEventMenu(Event event) {
@@ -348,12 +352,14 @@ public class JournalRunner {
 
     // EFFECTS: obtains and enters into the most highly rated event recorded under this day
     public void viewHighlight(Day day) {
+        printDivider();
         Event event = day.getMostHighlyRated();
         if (event == null) {
             System.out.println("Nothing recorded yet!");
         } else {
             enterEventMenu(event);
         }
+        printDivider();
     }
 
     // EFFECTS: displays a list of commands that can be used in the menu provided when
@@ -376,14 +382,15 @@ public class JournalRunner {
                 break;
             case "s":
                 event.flipStar();
+                printDivider();
                 break;
             case "q":
                 break;
             default:
                 System.out.println("Invalid option inputted!");
+                printDivider();
                 break;
         }
-        printDivider();
     }
 
     // MODIFIES: this
@@ -391,6 +398,7 @@ public class JournalRunner {
     //          already exist. if given event is already tagged under tag, then 
     //          does nothing (does not add a duplicate tag)
     public void addTag(Event event) {
+        printDivider();
         System.out.print("Enter the name of the tag: ");
         String tagName = this.scanner.nextLine();
         Tag tagToAdd = existingTag(tagName);
