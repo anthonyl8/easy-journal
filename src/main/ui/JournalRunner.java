@@ -284,21 +284,9 @@ public class JournalRunner {
     // EFFECTS: uses user input to create a new event under the given day
     public void addEvent(Day day) {
         printDivider();
-        System.out.println("Please fill out the following fields: ");
-        System.out.print("Event title: ");
-        String title = this.scanner.nextLine();
-        int rating;
-        while (true) {
-            try {
-                System.out.print("Rating (from 1 to 10): ");
-                String input = this.scanner.nextLine();
-                rating = Integer.valueOf(input);
-                checkRatingIsValid(rating);
-                break;
-            } catch (NumberFormatException | RatingOutOfBoundsException e) {
-                System.out.println("You did not input an integer from 1 to 10. Try again.");
-            }
-        }
+        System.out.println("Please fill out the following fields: \n");
+        String title = handleTitleInput();
+        int rating = handleRatingInput();
 
         System.out.print("Quote: ");
         String quote = this.scanner.nextLine();
@@ -309,6 +297,39 @@ public class JournalRunner {
         day.addEvent(event);
         System.out.println("Event successfully added!");
         printDivider();
+    }
+    
+    // EFFECTS: Handles the title input for an event that is being newly created.
+    //          If title length is shorter than 2 characters, prompts the user
+    //          to enter a new title. Otherwise, returns user inputted title. 
+    public String handleTitleInput() {
+        String title;
+        while (true) {
+            System.out.print("Event title (min. 2 characters): ");
+            title = this.scanner.nextLine();
+            if (title.length() >= 2) {
+                return title;
+            }
+            System.out.println("-> Inputted title is too short. Try again.");
+        }
+    }
+
+    // EFFECTS: Handles the rating input for an event that is being newly created.
+    //          If rating length is shorter than 2 characters, prompts the user
+    //          to enter a new title. Otherwise, returns user inputted title. 
+    public int handleRatingInput() {
+        int rating;
+        while (true) {
+            try {
+                System.out.print("Rating (from 1 to 10): ");
+                String input = this.scanner.nextLine();
+                rating = Integer.valueOf(input);
+                checkRatingIsValid(rating);
+                return rating;
+            } catch (NumberFormatException | RatingOutOfBoundsException e) {
+                System.out.println("-> You did not input an integer from 1 to 10. Try again.");
+            }
+        }
     }
 
     // EFFECTS: throws exception if rating is out of bounds, otherwise do nothing
