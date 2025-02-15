@@ -23,10 +23,12 @@ entries every day.
 ## User Stories
 As a user, I want to be able to ...
 - create a new event and record it in my journal under a specific day
-- view a list of all events recorded that may or may not satisfy a filter
+- view a list of all events recorded under a specific day
+- categorize events by different tags that themselves record how often they are
+used
+- view statistics about my logged events at the aggregate level 
+- view a list of all events recorded under a certain tag
 - enter a calendar view in which I can click into any day and see the events 
 recorded under that day
 - view a slideshow of all recorded events
 - select an event from the past and add an "in hindsight" comment
-- create my own tags and categorize events by my created tags
-- view statistics about my logged events at the aggregate level 
