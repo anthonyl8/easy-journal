@@ -102,7 +102,7 @@ public class JournalRunner {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds today to the list of days
+    // EFFECTS: adds today to the list of days, unless today has already been added
     public void addToday() {
         LocalDate yearMonthDate = LocalDate.now();
         try {
@@ -114,7 +114,8 @@ public class JournalRunner {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a day to the list of days
+    // EFFECTS: adds inputted day to the list of days. if inputted date is invalid
+    //          or has already been entered, prompt user to re-enter a date
     public void addNewDay() {
         while (true) {
             System.out.println("Please enter the date in the following format: YYYY-MM-DD: ");
@@ -170,7 +171,8 @@ public class JournalRunner {
     }
 
     // MODIFIES: this
-    // EFFECTS: allows user to select a day that has already been added
+    // EFFECTS: allows user to select a day that has already been added. if no 
+    //          days have been added, tell user there are no days to pick from
     public void selectDay() {
         if (days.isEmpty()) {
             System.out.println("No days to select!");
@@ -317,8 +319,8 @@ public class JournalRunner {
     }
 
     // EFFECTS: Handles the rating input for an event that is being newly created.
-    //          If rating length is shorter than 2 characters, prompts the user
-    //          to enter a new title. Otherwise, returns user inputted title. 
+    //          If rating is not an integer between 1 and 10, prompts user to 
+    //          re-enter. Otherwise, returns user inputted rating.
     public int handleRatingInput() {
         int rating;
         while (true) {
@@ -390,7 +392,8 @@ public class JournalRunner {
 
     // MODIFIES: this, day
     // EFFECTS: obtains and enters into the most highly rated event recorded under
-    //          this day
+    //          this day. if no events recorded so far, tell user that nothing has
+    //          been recorded yet.
     public void viewHighlight(Day day) {
         printDivider();
         Event event = day.getMostHighlyRated();
@@ -479,7 +482,8 @@ public class JournalRunner {
         displayMostUsedTags();
     }
 
-    // EFFECTS: prints days in user's journal with most events recorded
+    // EFFECTS: prints days in user's journal with most events recorded. if no days
+    //          added so far, tell user that no days have been recorded yet.
     public void displayMostEventfulDays() {
         System.out.println("Most eventful days: ");
         if (days.isEmpty()) {
@@ -503,7 +507,8 @@ public class JournalRunner {
         return days.subList(0, end);
     }
 
-    // EFFECTS: prints most highly rated days in user's journal
+    // EFFECTS: prints most highly rated days in user's journal. if no days added
+    //          so far, tell user that no days have been recorded yet.
     public void displayBestDays() {
         System.out.println("Top days: ");
         if (days.isEmpty()) {
@@ -527,7 +532,8 @@ public class JournalRunner {
         return days.subList(0, end);
     }
 
-    // EFFECTS: prints most used tags for user's journal
+    // EFFECTS: prints most used tags for user's journal. if no tags added
+    //          so far, tell user that no tags have been recorded yet.
     public void displayMostUsedTags() {
         System.out.println("Top tags: ");
         if (tags.isEmpty()) {
