@@ -259,7 +259,9 @@ public class JournalRunner {
             case "q":
                 break;
             default:
+                printDivider();
                 System.out.println("Invalid option inputted. Please try again.");
+                printDivider();
                 break;
         }
     }
@@ -425,7 +427,8 @@ public class JournalRunner {
             case "q":
                 break;
             default:
-                System.out.println("Invalid option inputted!");
+                printDivider();
+                System.out.println("Invalid option inputted. Please try again.");
                 printDivider();
                 break;
         }
