@@ -65,7 +65,7 @@ public class JournalRunner {
 
     // EFFECTS: displays a list of commands that can be used in the main menu
     public void displayMenu() {
-        System.out.println("Please select an option");
+        System.out.println("Please select an option\n");
         System.out.println("[t]: Add today");
         System.out.println("[a]: Add a new day");
         System.out.println("[s]: Select an existing day");
