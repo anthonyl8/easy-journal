@@ -32,3 +32,8 @@ used
 recorded under that day
 - view a slideshow of all recorded events
 - select an event from the past and add an "in hindsight" comment
+- when I select the quit option from the application menu, I want to be 
+prompted to save my recorded journal to file and have the *option* to do so or 
+not
+- when I start the application, I want to be given the *option* to load my 
+previously recorded journal from file
