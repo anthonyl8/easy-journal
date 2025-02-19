@@ -1,12 +1,18 @@
 package model;
 
+import persistence.Writeable;
+
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.awt.Image;
 
 // Represents an event that a user can record with a title, tags, a rating,
 // a starred status, a quote, and an image.
-public class Event {
+public class Event implements Writeable {
 
     private String title;
     private List<Tag> tags;
@@ -80,5 +86,17 @@ public class Event {
         tags.sort((Tag t1, Tag t2) -> {
             return t2.getNumEvents() - t1.getNumEvents();
         });
+    }
+
+    @Override
+    public JSONObject toJson() {
+        // stub
+        return null;
+    }
+
+    // EFFECTS: returns tags associated with this event as a JSON array
+    private JSONArray tagsToJson() {
+        // stub
+        return null;
     }
 }
