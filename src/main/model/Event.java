@@ -90,13 +90,21 @@ public class Event implements Writeable {
 
     @Override
     public JSONObject toJson() {
-        // stub
-        return null;
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        json.put("tags", tagsToJson());
+        json.put("rating", rating);
+        json.put("starred", starred);
+        json.put("quote", quote);
+        return json;
     }
 
     // EFFECTS: returns tags associated with this event as a JSON array
     private JSONArray tagsToJson() {
-        // stub
-        return null;
+        JSONArray jsonArray = new JSONArray();
+        for (Tag tag : tags) {
+            jsonArray.put(tag.toJson());
+        }
+        return jsonArray;
     }
 }
