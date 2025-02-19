@@ -29,7 +29,7 @@ public class JournalRunner {
     private Scanner scanner;
     private boolean isRunning;
     private SimpleDateFormat sdf;
-    private static final String JSON_STORE = "./data/persistence/testReaderGeneralJournal.json";
+    private static final String JSON_STORE = "./data/persistence/journal.json";
     private JsonReader jsonReader;
 
 
@@ -502,7 +502,12 @@ public class JournalRunner {
         }
     }
 
-    // MODIFIES: this
+    // EFFECTS: saves the journal to file
+    public void saveJournal() {
+        // stub
+    }
+
+    // MODIFIES: thiss
     // EFFECTS: prints a closing message and marks the program as not running
     public void quitApplication() {
         System.out.println("Thanks for using EasyJournal!");
