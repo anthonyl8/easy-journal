@@ -52,24 +52,24 @@ public class JsonReader {
     // MODIFIES: this
     // EFFECTS: parses journal from JSON object and returns it
     private Journal parseJournal(JSONObject jsonObject) {
-        addTags(jsonObject);
+        addTagsToJournal(jsonObject);
         addDays(jsonObject);
         return journal;
     }
 
     // MODIFIES: this
     // EFFECTS: parses tags from JSON object and adds them to journal
-    private void addTags(JSONObject jsonObject) {
+    private void addTagsToJournal(JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("tags");
         for (Object json : jsonArray) {
             JSONObject nextTag = (JSONObject) json;
-            addTag(nextTag);
+            addTagToJournal(nextTag);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: parses tag from JSON object and adds it to journal
-    private void addTag(JSONObject jsonObject) {
+    private void addTagToJournal(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Tag tag = new Tag(name);
         journal.addTag(tag);
@@ -115,23 +115,23 @@ public class JsonReader {
         Event event = new Event(title, rating, quote);
         boolean starred = jsonObject.getBoolean("starred");
         event.setStar(starred);
-        addTags(event, jsonObject);
+        addTagsToEvent(event, jsonObject);
         day.addEvent(event);
     }
 
     // MODIFIES: this, event
     // EFFECTS: parses tags from JSON object and adds them to event
-    private void addTags(Event event, JSONObject jsonObject) {
+    private void addTagsToEvent(Event event, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("tags");
         for (Object json : jsonArray) {
             JSONObject nextTag = (JSONObject) json;
-            addTag(event, nextTag);
+            addTagToEvent(event, nextTag);
         }
     }
 
     // MODIFIES: this, event
     // EFFECTS: parses event from JSON object and adds it to event
-    private void addTag(Event event, JSONObject jsonObject) {
+    private void addTagToEvent(Event event, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Tag tag = journal.getTagFromName(name);
         event.addTag(tag);
