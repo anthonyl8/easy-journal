@@ -1,29 +1,36 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Journal {
 
+    private List<Day> days;
+    private List<Tag> tags;
+
     public Journal() {
-        // constructor
+        days = new ArrayList<Day>();
+        tags = new ArrayList<Tag>();
     }
 
     public List<Day> getDays() {
-        // stub
-        return null;
+        return days;
     }
 
     public List<Tag> getTags() {
-        // stub
-        return null;
+        return tags;
     }
 
     // MODIFIES: this
     // EFFECTS: adds given day to list of days if it is not already in list of days,
     //          returning true if added or false if already in list of days.
     public boolean addDay(Day day) {
-        // stub
-        return false;
+        if (dateRecord(day.toString()) != null) {
+            return false;
+        } else {
+            days.add(day);
+            return true;
+        } 
     }
 
 
@@ -31,7 +38,15 @@ public class Journal {
     // EFFECTS: returns corresponding day if given date has already been recorded
     //          in journal, otherwise returns null
     public Day dateRecord(String yearMonthDate) {
-        // stub
+        String[] splitDate = yearMonthDate.split("-");
+        int year = Integer.valueOf(splitDate[0]);
+        int month = Integer.valueOf(splitDate[1]);
+        int date = Integer.valueOf(splitDate[2]);
+        for (Day day : days) {
+            if (year == day.getYear() && month == day.getMonth() && date == day.getDate()) {
+                return day;
+            }
+        }
         return null;
     }
 
@@ -39,24 +54,35 @@ public class Journal {
     // EFFECTS: adds given tag to list of tags if it is not already in list of tags,
     //          returning true if added or false if already in list of tags.
     public boolean addTag(Tag tag) {
-        // stub
-        return false;
+        if (!tags.contains(tag)) {
+            tags.add(tag);
+            return true;
+        } else {
+            return false;
+        }
     }
-
     // MODIFIES: this
     // EFFECTS: given a tag name, creates a new tag with that name and adds it to 
     //          list of tags if list of tags does not already contain a tag with 
     //          that name, then returns this newly created tag. otherwise, returns
     //          tag in list of tags whose name matches the given tag name
     public Tag addTag(String tagName) {
-        // stub
-        return null;
+        Tag tagToAdd = getTagFromName(tagName);
+        if (tagToAdd == null) {
+            tagToAdd = new Tag(tagName);
+            tags.add(tagToAdd);
+        }
+        return tagToAdd;
     }
 
     // EFFECTS: returns the tag whose name matches the given tag name, or null if no
     //          tag's name matches the given tag name
     public Tag getTagFromName(String tagName) {
-        // stub
+        for (Tag tag : tags) {
+            if (tag.getName().equals(tagName)) {
+                return tag;
+            }
+        }
         return null;
     }
 
@@ -64,24 +90,33 @@ public class Journal {
     // EFFECTS: gets top 3 days with most events recorded under them, or all days in
     //          list (depending on which one is smaller)
     public List<Day> getMostEventfulDays() {
-        // stub
-        return null;
+        days.sort((Day d1, Day d2) -> {
+            return d2.getNumEvents() - d1.getNumEvents();
+        });
+        int end = Math.min(3, days.size());
+        return days.subList(0, end);
     }
 
     // REQUIRES: at least one day in list of days
     // EFFECTS: gets top 3 most highly rated days in list of days, or all days in
     //          list (depending on which one is smaller)
     public List<Day> getTopDays() {
-        // stub
-        return null;
+        days.sort((Day d1, Day d2) -> {
+            return Double.compare(d2.getAverageRating(), d1.getAverageRating());
+        });
+        int end = Math.min(3, days.size());
+        return days.subList(0, end);
     }
 
     // REQUIRES: at least one tag in list of tags
     // EFFECTS: gets top 3 most used tags in list of tags, or all tags in list
     //          (depending on which one is smaller)
     public List<Tag> getTopTags() {
-        // stub
-        return null;
+        tags.sort((Tag t1, Tag t2) -> {
+            return t2.getNumEvents() - t1.getNumEvents();
+        });
+        int end = Math.min(3, tags.size());
+        return tags.subList(0, end);
     }
 
 }
