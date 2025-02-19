@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+// SOURCE: Test helpers based on JSON Serialization Demo
 public class TestJson {
     
     protected void checkDayEquality(Day expected, Day actual) {

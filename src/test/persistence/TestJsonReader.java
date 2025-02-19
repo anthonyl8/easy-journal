@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// SOURCE: Tests based on JSON Serialization Demo
 class TestJsonReader extends TestJson {
 
     Journal jr;
