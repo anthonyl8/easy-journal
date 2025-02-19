@@ -1,0 +1,139 @@
+{
+    "days": [
+        {
+            "year": 2024,
+            "month": 5,
+            "date": 12,
+            "events": [
+                {
+                    "title": "Pre-Presentation",
+                    "tags": [
+                        {
+                            "name": "feeling-okay",
+                            "numEvents": 1
+                        }
+                    ],
+                    "rating": 5,
+                    "starred": false,
+                    "quote": "Presenting to judges after Cansat crashed..."
+                },
+                {
+                    "title": "Cansat Win!",
+                    "tags": [
+                        {
+                            "name": "travel",
+                            "numEvents": 4
+                        },
+                        {
+                            "name": "competition",
+                            "numEvents": 1
+                        }
+                    ],
+                    "rating": 9,
+                    "starred": true,
+                    "quote": "We won! Europe-bound!"
+                }
+            ]
+        },
+        {
+            "year": 2024,
+            "month": 6,
+            "date": 15,
+            "events": [
+                {
+                    "title": "Amsterdam Centraal",
+                    "tags": [
+                        {
+                            "name": "travel",
+                            "numEvents": 4
+                        }
+                    ],
+                    "rating": 8,
+                    "starred": false,
+                    "quote": "Amsterdam train station!"
+                }
+            ]
+        },
+        {
+            "year": 2024,
+            "month": 7,
+            "date": 7,
+            "events": [
+                {
+                    "title": "Cathedrale Notre-Dame",
+                    "tags": [
+                        {
+                            "name": "melancholy",
+                            "numEvents": 1
+                        }
+                    ],
+                    "rating": 7,
+                    "starred": false,
+                    "quote": "Couldn't go inside, of course, but looks like repairs are going well!"
+                },
+                {
+                    "title": "Arc de Triomphe",
+                    "tags": [
+                        {
+                            "name": "travel",
+                            "numEvents": 4
+                        },
+                        {
+                            "name": "views",
+                            "numEvents": 2
+                        }
+                    ],
+                    "rating": 9,
+                    "starred": true,
+                    "quote": "What a view..."
+                },
+                {
+                    "title": "La Tour Eiffel",
+                    "tags": [
+                        {
+                            "name": "travel",
+                            "numEvents": 4
+                        },
+                        {
+                            "name": "views",
+                            "numEvents": 2
+                        },
+                        {
+                            "name": "core-memory",
+                            "numEvents": 1
+                        }
+                    ],
+                    "rating": 10,
+                    "starred": true,
+                    "quote": "Finally up on the Eiffel Tower!"
+                }
+            ]
+        }
+    ],
+    "tags": [
+        {
+            "name": "feeling-okay",
+            "numEvents": 1
+        },
+        {
+            "name": "travel",
+            "numEvents": 4
+        },
+        {
+            "name": "competition",
+            "numEvents": 1
+        },
+        {
+            "name": "melancholy",
+            "numEvents": 1
+        },
+        {
+            "name": "views",
+            "numEvents": 2
+        },
+        {
+            "name": "core-memory",
+            "numEvents": 1
+        }
+    ]
+}
