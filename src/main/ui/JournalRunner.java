@@ -14,7 +14,7 @@ import model.Day;
 import model.Event;
 import model.Journal;
 import model.Tag;
-
+import persistence.JsonReader;
 import exceptions.RatingOutOfBoundsException;
 
 // SOURCE: There are many in-class sources I could have based my code off of. 
@@ -29,6 +29,9 @@ public class JournalRunner {
     private Scanner scanner;
     private boolean isRunning;
     private SimpleDateFormat sdf;
+    private static final String JSON_STORE = "./data/persistence/testReaderGeneralJournal.json";
+    private JsonReader jsonReader;
+
 
     // EFFECTS: creates an instance of the JournalRunner console UI application
     public JournalRunner() {
@@ -51,6 +54,7 @@ public class JournalRunner {
         isRunning = true;
         sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // MODIFIES: this
@@ -66,8 +70,9 @@ public class JournalRunner {
         System.out.println("Please select an option\n");
         System.out.println("[t]: Add today");
         System.out.println("[a]: Add a new day");
-        System.out.println("[s]: Select an existing day");
+        System.out.println("[e]: Select an existing day");
         System.out.println("[n]: View event statistics");
+        System.out.println("[l]: Load journal from file");
         System.out.println("[q]: Quit the application");
         printDivider();
     }
@@ -83,11 +88,14 @@ public class JournalRunner {
             case "a":
                 addNewDay();
                 break;
-            case "s":
+            case "e":
                 selectDay();
                 break;
             case "n":
                 displayStatistics();
+                break;
+            case "l":
+                loadJournal();
                 break;
             case "q":
                 quitApplication();
@@ -486,7 +494,12 @@ public class JournalRunner {
     // MODIFIES: this
     // EFFECTS: loads journal from file
     public void loadJournal() {
-        // stub
+        try {
+            journal = jsonReader.read();
+            System.out.println("Loaded journal from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
     // MODIFIES: this
