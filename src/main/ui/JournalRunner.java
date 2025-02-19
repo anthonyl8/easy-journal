@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 // import java.awt.Image;
 import java.text.ParseException;
@@ -15,6 +16,7 @@ import model.Event;
 import model.Journal;
 import model.Tag;
 import persistence.JsonReader;
+import persistence.JsonWriter;
 import exceptions.RatingOutOfBoundsException;
 
 // SOURCE: There are many in-class sources I could have based my code off of. 
@@ -31,6 +33,7 @@ public class JournalRunner {
     private SimpleDateFormat sdf;
     private static final String JSON_STORE = "./data/persistence/journal.json";
     private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
 
 
     // EFFECTS: creates an instance of the JournalRunner console UI application
@@ -55,6 +58,7 @@ public class JournalRunner {
         sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
         jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
     }
 
     // MODIFIES: this
@@ -72,6 +76,7 @@ public class JournalRunner {
         System.out.println("[a]: Add a new day");
         System.out.println("[e]: Select an existing day");
         System.out.println("[n]: View event statistics");
+        System.out.println("[s]: Save journal to file");
         System.out.println("[l]: Load journal from file");
         System.out.println("[q]: Quit the application");
         printDivider();
@@ -93,6 +98,9 @@ public class JournalRunner {
                 break;
             case "n":
                 displayStatistics();
+                break;
+            case "s":
+                saveJournal();
                 break;
             case "l":
                 loadJournal();
@@ -504,10 +512,17 @@ public class JournalRunner {
 
     // EFFECTS: saves the journal to file
     public void saveJournal() {
-        // stub
+        try {
+            jsonWriter.open();
+            jsonWriter.write(journal);
+            jsonWriter.close();
+            System.out.println("Saved journal to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
     }
 
-    // MODIFIES: thiss
+    // MODIFIES: this
     // EFFECTS: prints a closing message and marks the program as not running
     public void quitApplication() {
         System.out.println("Thanks for using EasyJournal!");
