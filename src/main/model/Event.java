@@ -40,8 +40,8 @@ public class Event {
 
     // MODIFIES: this
     // EFFECTS: adds given tag to list of tags if it is not already in list of tags,
-    //          returning true if added or false if already in list of tags. resorts
-    //          tags in list of tags and updates number of events tagged in tag
+    //          returning true if added or false if already in list of tags. updates 
+    //          number of events tagged in tag
     public boolean addTag(Tag tag) {
         if (!(tags.contains(tag))) {
             tags.add(tag);
@@ -62,6 +62,10 @@ public class Event {
 
     public boolean isStarred() {
         return starred;
+    }
+
+    public void setStar(boolean star) {
+        starred = star;
     }
 
     // MODIFIES: this
