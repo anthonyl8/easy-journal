@@ -1,10 +1,15 @@
 package model;
 
+import persistence.Writeable;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 // Represents a journal with a list of days recorded and a list of tags used.
-public class Journal {
+public class Journal implements Writeable {
 
     private List<Day> days;
     private List<Tag> tags;
@@ -120,4 +125,21 @@ public class Journal {
         return tags.subList(0, end);
     }
 
+    @Override
+    public JSONObject toJson() {
+        // stub
+        return null;
+    }
+
+    // EFFECTS: returns days in this journal as a JSON array
+    private JSONArray daysToJson() {
+        // stub
+        return null;
+    }
+
+    // EFFECTS: returns tags in this journal as a JSON array
+    private JSONArray tagsToJson() {
+        // stub
+        return null;
+    }
 }
