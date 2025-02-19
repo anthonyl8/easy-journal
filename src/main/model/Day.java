@@ -1,10 +1,15 @@
 package model;
 
+import persistence.Writeable;
+
 import java.util.List;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 // Represents a unique day with a year, month, date, and list of events under this day
-public class Day {
+public class Day implements Writeable {
     
     private int year;
     private int month;
@@ -103,4 +108,15 @@ public class Day {
         return finalDate;
     }
 
+    @Override
+    public JSONObject toJson() {
+        // stub
+        return null;
+    }
+
+    // EFFECTS: returns events in this day as a JSON array
+    private JSONArray eventsToJson() {
+        // stub
+        return null;
+    }
 }
