@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a journal with a list of days recorded and a list of tags used.
 public class Journal {
 
     private List<Day> days;
