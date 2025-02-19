@@ -4,7 +4,6 @@ package ui;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,9 +11,9 @@ import java.util.Scanner;
 
 import model.Day;
 import model.Event;
+import model.Journal;
 import model.Tag;
 
-import exceptions.AlreadyAddedException;
 import exceptions.RatingOutOfBoundsException;
 
 // SOURCE: There are many in-class sources I could have based my code off of. 
@@ -24,14 +23,13 @@ import exceptions.RatingOutOfBoundsException;
 // Represents an instance of the console based UI for EasyJournal.
 public class JournalRunner {
 
-    private List<Day> days;
-    private List<Tag> tags;
+    private Journal journal;
 
     private Scanner scanner;
     private boolean isRunning;
     private SimpleDateFormat sdf;
 
-    // EFFECTS: creates an instance of the JournalRunner console ui application
+    // EFFECTS: creates an instance of the JournalRunner console UI application
     public JournalRunner() {
         init();
 
@@ -47,8 +45,7 @@ public class JournalRunner {
     // MODIFIES: this
     // EFFECTS: initializes the application with the starting values
     public void init() {
-        days = new ArrayList<Day>();
-        tags = new ArrayList<Tag>();
+        journal = new Journal();
         scanner = new Scanner(System.in);
         isRunning = true;
         sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -69,7 +66,7 @@ public class JournalRunner {
         System.out.println("[t]: Add today");
         System.out.println("[a]: Add a new day");
         System.out.println("[s]: Select an existing day");
-        System.out.println("[n]: view event statistics");
+        System.out.println("[n]: View event statistics");
         System.out.println("[q]: Quit the application");
         printDivider();
     }
@@ -102,20 +99,16 @@ public class JournalRunner {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds today to the list of days, unless today has already been added
+    // EFFECTS: adds today to the list of days in journal, unless today has already 
+    //          been added
     public void addToday() {
         LocalDate yearMonthDate = LocalDate.now();
-        try {
-            recordDay(yearMonthDate.toString());
-        } catch (AlreadyAddedException e) {
-            System.out.println("Today has already been added!");
-        }
-
+        recordDay(yearMonthDate.toString());
     }
 
     // MODIFIES: this
-    // EFFECTS: adds inputted day to the list of days. if inputted date is invalid
-    //          or has already been entered, prompt user to re-enter a date
+    // EFFECTS: adds inputted day to the list of days in journal. if inputted date 
+    //          is invalid or has already been entered, prompts user to re-enter a date
     public void addNewDay() {
         while (true) {
             System.out.println("Please enter the date in the following format: YYYY-MM-DD: ");
@@ -128,8 +121,6 @@ public class JournalRunner {
                 break;
             } catch (ParseException e) {
                 System.out.println("You entered an invalid date!");
-            } catch (AlreadyAddedException e) {
-                System.out.println("That day has already been added!");
             }
             printDivider();
         }
@@ -138,43 +129,27 @@ public class JournalRunner {
     // REQUIRES: date is entered in the valid YYYY-MM-DD format
     // MODIFIES: this
     // EFFECTS: creates a new day with the given year, month, and date, and adds
-    //          this day to list of days. if day has already been added, throws 
-    //          AlreadyAddedException
-    public void recordDay(String yearMonthDate) throws AlreadyAddedException {
-        if (dateRecord(yearMonthDate) != null) {
-            throw new AlreadyAddedException();
-        } else {
-            String[] splitDate = yearMonthDate.split("-");
-            int year = Integer.valueOf(splitDate[0]);
-            int month = Integer.valueOf(splitDate[1]);
-            int date = Integer.valueOf(splitDate[2]);
-
-            Day day = new Day(year, month, date);
-            days.add(day);
-            System.out.println(day + " was successfully recorded!");
-        }
-    }
-
-    // EFFECTS: returns corresponding day if given date has already been recorded,
-    //          otherwise returns null
-    public Day dateRecord(String yearMonthDate) {
+    //          this day to list of days in journal if this date has not already
+    //          been added
+    public void recordDay(String yearMonthDate) {
         String[] splitDate = yearMonthDate.split("-");
         int year = Integer.valueOf(splitDate[0]);
         int month = Integer.valueOf(splitDate[1]);
         int date = Integer.valueOf(splitDate[2]);
-        for (Day day : days) {
-            if (year == day.getYear() && month == day.getMonth() && date == day.getDate()) {
-                return day;
-            }
+
+        Day day = new Day(year, month, date);
+        if (journal.addDay(day)) {
+            System.out.println(day + " was successfully recorded!");
+        } else {
+            System.out.println(day + " has already been added!");
         }
-        return null;
     }
 
     // MODIFIES: this
-    // EFFECTS: allows user to select a day that has already been added. if no 
-    //          days have been added, tell user there are no days to pick from
+    // EFFECTS: allows user to select a day that has already been added to journal. 
+    //          if no days have been added, tell user there are no days to pick from
     public void selectDay() {
-        if (days.isEmpty()) {
+        if (journal.getDays().isEmpty()) {
             System.out.println("No days to select!");
         } else {
             handleDateInput();
@@ -183,14 +158,14 @@ public class JournalRunner {
 
     // MODIFIES: this
     // EFFECTS: if user inputs a valid date, sends the user to the corresponding
-    //          date. otherwise, prompts the user to re-enter a date
+    //          day in journal. otherwise, prompts the user to re-enter a date
     @SuppressWarnings("methodlength")
     public void handleDateInput() {
         String yearMonthDate;
         Day recordedDay;
         while (true) {
             System.out.println("Select one of the following dates by typing it: ");
-            for (Day day : days) {
+            for (Day day : journal.getDays()) {
                 System.out.println(day);
             }
             printDivider();
@@ -198,7 +173,7 @@ public class JournalRunner {
             printDivider();
             try {
                 sdf.parse(yearMonthDate);
-                recordedDay = dateRecord(yearMonthDate);
+                recordedDay = journal.dateRecord(yearMonthDate);
                 if (recordedDay == null) {
                     System.out.println("You haven't added that date yet!");
                 } else {
@@ -289,7 +264,7 @@ public class JournalRunner {
     public void addEvent(Day day) {
         printDivider();
         System.out.println("Please fill out the following fields: \n");
-        String title = handleTitleInput();
+        String title = handleTitleInput(day);
         int rating = handleRatingInput();
 
         System.out.print("Quote: ");
@@ -306,7 +281,7 @@ public class JournalRunner {
     // EFFECTS: Handles the title input for an event that is being newly created.
     //          If title length is shorter than 2 characters, prompts the user
     //          to enter a new title. Otherwise, returns user inputted title. 
-    public String handleTitleInput() {
+    public String handleTitleInput(Day day) {
         String title;
         while (true) {
             System.out.print("Event title (min. 2 characters): ");
@@ -360,10 +335,10 @@ public class JournalRunner {
     public void viewEvent(Event event) {
         printTitle(event);
         event.sortTags();
-        List<Tag> tags = event.getTags();
-        if (!(tags.isEmpty())) {
+        List<Tag> eventTags = event.getTags();
+        if (!(eventTags.isEmpty())) {
             System.out.print("TAGGED UNDER: ");
-            for (Tag tag : tags) {
+            for (Tag tag : eventTags) {
                 printTag(tag);
             }
             System.out.println();
@@ -385,7 +360,7 @@ public class JournalRunner {
         }
     }
 
-    // EFFECTS: prints a tag and the number of events under the tagged
+    // EFFECTS: prints a tag and the number of events under the tag
     public void printTag(Tag tag) {
         System.out.print(tag.getName() + " (" + tag.getNumEvents() + ")   ");
     }
@@ -445,32 +420,14 @@ public class JournalRunner {
         printDivider();
         System.out.print("Enter the name of the tag: ");
         String tagName = this.scanner.nextLine();
-        Tag tagToAdd = existingTag(tagName);
-        if (tagToAdd == null) {
-            tagToAdd = new Tag(tagName);
-            tags.add(tagToAdd);
-        }
-
+        Tag tagToAdd = journal.addTag(tagName);
+        printDivider();
         if (event.addTag(tagToAdd)) {
             System.out.println("Tag successfully added!");
         } else {
             System.out.println("Tag already added!");
         }
-
         printDivider();
-    }
-
-    // EFFECTS: returns the tag whose name matches the given tag name, or null if no
-    //          tag's name matches the given tag name
-    public Tag existingTag(String tagName) {
-        Tag existing = null;
-        for (Tag tag : tags) {
-            if (tag.getName().equals(tagName)) {
-                existing = tag;
-                break;
-            }
-        }
-        return existing;
     }
 
     // EFFECTS: prints aggregate level statistics about user's journal
@@ -486,76 +443,43 @@ public class JournalRunner {
     //          added so far, tell user that no days have been recorded yet.
     public void displayMostEventfulDays() {
         System.out.println("Most eventful days: ");
-        if (days.isEmpty()) {
+        if (journal.getDays().isEmpty()) {
             System.out.println("No days recorded yet! Go wild!");
         } else {
-            List<Day> busiestDays = getMostEventfulDays();
+            List<Day> busiestDays = journal.getMostEventfulDays();
             for (Day day : busiestDays) {
                 System.out.println(day + " (" + day.getNumEvents() + ")");
             }
         }
     }
 
-    // REQUIRES: at least one day in list of days
-    // EFFECTS: gets top 3 days with most events recorded under them, or all days in
-    //          list (depending on which one is smaller)
-    public List<Day> getMostEventfulDays() {
-        days.sort((Day d1, Day d2) -> {
-            return d2.getNumEvents() - d1.getNumEvents();
-        });
-        int end = Math.min(3, days.size());
-        return days.subList(0, end);
-    }
-
     // EFFECTS: prints most highly rated days in user's journal. if no days added
     //          so far, tell user that no days have been recorded yet.
     public void displayBestDays() {
         System.out.println("Top days: ");
-        if (days.isEmpty()) {
+        if (journal.getDays().isEmpty()) {
             System.out.println("No days recorded yet! Go wild!");
         } else {
-            List<Day> topDays = getTopDays();
+            List<Day> topDays = journal.getTopDays();
             for (Day day : topDays) {
                 System.out.println(day + " (" + day.getAverageRating() + "/10)");
             }
         }
     }
 
-    // REQUIRES: at least one day in list of days
-    // EFFECTS: gets top 3 most highly rated days in list of days, or all days in
-    //          list (depending on which one is smaller)
-    public List<Day> getTopDays() {
-        days.sort((Day d1, Day d2) -> {
-            return Double.compare(d2.getAverageRating(), d1.getAverageRating());
-        });
-        int end = Math.min(3, days.size());
-        return days.subList(0, end);
-    }
-
     // EFFECTS: prints most used tags for user's journal. if no tags added
     //          so far, tell user that no tags have been recorded yet.
     public void displayMostUsedTags() {
         System.out.println("Top tags: ");
-        if (tags.isEmpty()) {
+        if (journal.getTags().isEmpty()) {
             System.out.println("No tags used yet! Go wild!");
         } else {
-            List<Tag> topTags = getTopTags();
+            List<Tag> topTags = journal.getTopTags();
             for (Tag tag : topTags) {
                 printTag(tag);
             }
             System.out.println();
         }
-    }
-
-    // REQUIRES: at least one tag in list of tags
-    // EFFECTS: gets top 3 most used tags in list of tags, or all tags in list
-    //          (depending on which one is smaller)
-    public List<Tag> getTopTags() {
-        tags.sort((Tag t1, Tag t2) -> {
-            return t2.getNumEvents() - t1.getNumEvents();
-        });
-        int end = Math.min(3, tags.size());
-        return tags.subList(0, end);
     }
 
     // MODIFIES: this
