@@ -110,13 +110,20 @@ public class Day implements Writeable {
 
     @Override
     public JSONObject toJson() {
-        // stub
-        return null;
+        JSONObject json = new JSONObject();
+        json.put("year", year);
+        json.put("month", month);
+        json.put("date", date);
+        json.put("events", eventsToJson());
+        return json;
     }
 
     // EFFECTS: returns events in this day as a JSON array
     private JSONArray eventsToJson() {
-        // stub
-        return null;
+        JSONArray jsonArray = new JSONArray();
+        for (Event event : events) {
+            jsonArray.put(event.toJson());
+        }
+        return jsonArray;
     }
 }
