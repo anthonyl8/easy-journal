@@ -41,6 +41,12 @@ public class TestEvent {
         assertTrue(e1.isStarred());
         e1.flipStar();
         assertFalse(e1.isStarred());
+        e1.setStar(true);
+        e1.flipStar();
+        assertFalse(e1.isStarred());
+        e1.setStar(false);
+        e1.flipStar();
+        assertTrue(e1.isStarred());
     }
 
     @Test
