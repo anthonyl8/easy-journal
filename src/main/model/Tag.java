@@ -21,6 +21,10 @@ public class Tag {
         return numEvents;
     }
 
+    public void setNumEvents(int num) {
+        numEvents = num;
+    }
+
     // MODIFIES: this
     // EFFECTS: adds one to number of events categorized under this tag
     public void addNewEvent() {
