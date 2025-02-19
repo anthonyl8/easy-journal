@@ -127,19 +127,27 @@ public class Journal implements Writeable {
 
     @Override
     public JSONObject toJson() {
-        // stub
-        return null;
+        JSONObject json = new JSONObject();
+        json.put("days", daysToJson());
+        json.put("tags", tagsToJson());
+        return json;
     }
 
     // EFFECTS: returns days in this journal as a JSON array
     private JSONArray daysToJson() {
-        // stub
-        return null;
+        JSONArray jsonArray = new JSONArray();
+        for (Day day : days) {
+            jsonArray.put(day.toJson());
+        }
+        return jsonArray;
     }
 
     // EFFECTS: returns tags in this journal as a JSON array
     private JSONArray tagsToJson() {
-        // stub
-        return null;
+        JSONArray jsonArray = new JSONArray();
+        for (Tag tag : tags) {
+            jsonArray.put(tag.toJson());
+        }
+        return jsonArray;
     }
 }
