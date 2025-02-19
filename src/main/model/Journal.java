@@ -18,8 +18,21 @@ public class Journal {
         return null;
     }
 
-    public void addDay(Day day) {
+    // MODIFIES: this
+    // EFFECTS: adds given day to list of days if it is not already in list of days,
+    //          returning true if added or false if already in list of days.
+    public boolean addDay(Day day) {
         // stub
+        return false;
+    }
+
+
+    // REQUIRES: date is given as a string in the valid "YYYY-MM-DD" format
+    // EFFECTS: returns corresponding day if given date has already been recorded
+    //          in journal, otherwise returns null
+    public Day dateRecord(String yearMonthDate) {
+        // stub
+        return null;
     }
 
     // MODIFIES: this
