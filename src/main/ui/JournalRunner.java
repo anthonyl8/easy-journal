@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.IOException;
 // import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -480,6 +481,12 @@ public class JournalRunner {
             }
             System.out.println();
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads journal from file
+    public void loadJournal() {
+        // stub
     }
 
     // MODIFIES: this
