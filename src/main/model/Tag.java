@@ -1,8 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+
+import persistence.Writeable;
+
 // Represents a tag that users can categorize their events under, with 
 // a name and number of events categorized under this tag
-public class Tag {
+public class Tag implements Writeable {
     
     private String name;
     private int numEvents;
@@ -29,5 +33,11 @@ public class Tag {
     // EFFECTS: adds one to number of events categorized under this tag
     public void addNewEvent() {
         numEvents++;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        // stub
+        return null;
     }
 }
