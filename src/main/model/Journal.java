@@ -67,6 +67,7 @@ public class Journal implements Writeable {
             return false;
         }
     }
+    
     // MODIFIES: this
     // EFFECTS: given a tag name, creates a new tag with that name and adds it to 
     //          list of tags if list of tags does not already contain a tag with 
