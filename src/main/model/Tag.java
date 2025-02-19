@@ -37,7 +37,9 @@ public class Tag implements Writeable {
 
     @Override
     public JSONObject toJson() {
-        // stub
-        return null;
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("numEvents", numEvents);
+        return json;
     }
 }
