@@ -437,14 +437,21 @@ public class JournalRunner {
         printDivider();
         System.out.print("Enter the name of the tag: ");
         String tagName = this.scanner.nextLine();
-        Tag tagToAdd = journal.addTag(tagName);
         printDivider();
-        if (event.addTag(tagToAdd)) {
+        if (journal.addTag(event, tagName)) {
             System.out.println("Tag successfully added!");
         } else {
             System.out.println("Tag already added!");
         }
         printDivider();
+    }
+
+    // MODIFIES: this, event
+    // EFFECTS: removes tag from given event if tag is associated with given event.
+    //          if tag was removed from event and tag no longer has any events 
+    //          associated with it, deletes tag from journal
+    public void removeTag(Event event) {
+        // stub
     }
 
     // EFFECTS: prints aggregate level statistics about user's journal
