@@ -43,4 +43,37 @@ public class TestTag {
         t2.addNewEvent();
         assertEquals(1, t2.getNumEvents());
     }
+
+    @Test
+    void testRemoveEventOnce() {
+        t1.addNewEvent();
+        assertEquals(1, t1.getNumEvents());
+        t1.removeEvent();
+        assertEquals(0, t1.getNumEvents());
+    }
+
+    @Test
+    void testRemoveEventTwiceFromSameTag() {
+        t1.addNewEvent();
+        assertEquals(1, t1.getNumEvents());
+        t1.addNewEvent();
+        assertEquals(2, t1.getNumEvents());
+        t1.removeEvent();
+        assertEquals(1, t1.getNumEvents());
+        t1.removeEvent();
+        assertEquals(0, t1.getNumEvents());
+    }
+
+    @Test
+    void testRemoveEventOnceFromTwoDifferentTags() {
+        t1.addNewEvent();
+        assertEquals(1, t1.getNumEvents());
+        t2.addNewEvent();
+        assertEquals(1, t2.getNumEvents());
+        t1.removeEvent();
+        assertEquals(0, t1.getNumEvents());
+        t2.removeEvent();
+        assertEquals(0, t2.getNumEvents());
+    }
+    
 }
