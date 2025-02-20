@@ -229,6 +229,7 @@ public class JournalRunner {
         System.out.println("[event title]: view specified event");
         System.out.println("[i]: view most highly rated event in this day");
         System.out.println("[a]: add an event to this day");
+        System.out.println("[a]: remove an event from this day");
         System.out.println("[q]: quit this day");
         printDivider();
     }
@@ -249,6 +250,9 @@ public class JournalRunner {
                 break;
             case "a":
                 addEvent(day);
+                break;
+            case "d":
+                deleteEvent(day);
                 break;
             case "q":
                 break;
@@ -338,7 +342,18 @@ public class JournalRunner {
     // MODIFIES: this, day
     // EFFECTS: uses user input to create a new event under the given day
     public void deleteEvent(Day day) {
-        // stub
+        printDivider();
+        System.out.print("Please enter the name of the event to delete: ");
+        String name = this.scanner.nextLine();
+        printDivider();
+        Event eventToRemove = day.getEventFromTitle(name);
+        if (eventToRemove != null) {
+            day.removeEvent(eventToRemove);
+            System.out.println("Event was successfully deleted!");
+        } else {
+            System.out.println("No event with this title exists under this day!");
+        }
+        printDivider();
     }
 
     // MODIFIES: this, event
@@ -422,7 +437,7 @@ public class JournalRunner {
             case "a":
                 addTag(event);
                 break;
-            case "r":
+            case "d":
                 deleteTag(event);
                 break;
             case "s":
