@@ -84,9 +84,11 @@ public class Journal implements Writeable {
     }
 
     // MODIFIES: this
-    // EFFECTS: given a tag name, if there is a corresponding tag in list of tags,
-    //          removes it from list of tags and returns true. otherwise, returns
-    //          false
+    // EFFECTS: given a tag name, if there is a corresponding tag in list of tags
+    //          associated with given event, then removes that tag from list of tags.
+    //          if, after the tag was removed, the tag is no longer associated with
+    //          any events, removes tag from list of tags in journal. returns
+    //          true if the tag was removed from given event
     public boolean removeTag(Event event, String tagName) {
         Tag tagToRemove = getTagFromName(tagName);
         if (tagToRemove != null) {
