@@ -54,13 +54,18 @@ public class Day implements Writeable {
     // REQUIRES: event is in list of events recorded under day
     // EFFECTS: removes event from list of events recorded under day
     public void removeEvent(Event event) {
-        // stub
+        events.remove(event);
     }
 
-    // EFFECTS: returns the event whose name matches the given event name, or null if no
-    //          event's name matches the given event name
-    public void getEventFromName(String name) {
-        // stub
+    // EFFECTS: returns the event whose title matches the given event title, or null 
+    //          if no event's title matches the given event title
+    public Event getEventFromTitle(String eventTitle) {
+        for (Event event : events) {
+            if (event.getTitle().equals(eventTitle)) {
+                return event;
+            }
+        }
+        return null;
     }
 
     // EFFECTS: returns the event with the highest rating, or 1st event reached if 
