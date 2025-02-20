@@ -67,19 +67,25 @@ public class Journal implements Writeable {
             return false;
         }
     }
-    
+
     // MODIFIES: this
     // EFFECTS: given a tag name, creates a new tag with that name and adds it to 
     //          list of tags if list of tags does not already contain a tag with 
-    //          that name, then returns this newly created tag. otherwise, returns
-    //          tag in list of tags whose name matches the given tag name
-    public Tag addTag(String tagName) {
-        Tag tagToAdd = getTagFromName(tagName);
-        if (tagToAdd == null) {
-            tagToAdd = new Tag(tagName);
-            tags.add(tagToAdd);
-        }
-        return tagToAdd;
+    //          that name. no matter what, adds this tag to list of tags in given
+    //          event if it has not yet been added to the event, returning true in
+    //          this case and false if it has already been added to the event
+    public boolean addTag(Event event, String tagName) {
+        // stub
+        return false;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: given a tag name, if there is a corresponding tag in list of tags,
+    //          removes it from list of tags and returns true. otherwise, returns
+    //          false
+    public boolean removeTag(Event event, String tagName) {
+        // stub
+        return false;
     }
 
     // EFFECTS: returns the tag whose name matches the given tag name, or null if no
