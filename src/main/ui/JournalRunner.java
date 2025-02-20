@@ -403,6 +403,7 @@ public class JournalRunner {
         System.out.println("Please select an option:\n");
 
         System.out.println("[a]: add a tag");
+        System.out.println("[r]: remove a tag");
         System.out.println("[s]: star or unstar this event");
         System.out.println("[q]: quit this event");
         printDivider();
@@ -414,6 +415,9 @@ public class JournalRunner {
         switch (input) {
             case "a":
                 addTag(event);
+                break;
+            case "r":
+                removeTag(event);
                 break;
             case "s":
                 event.flipStar();
@@ -451,7 +455,16 @@ public class JournalRunner {
     //          if tag was removed from event and tag no longer has any events 
     //          associated with it, deletes tag from journal
     public void removeTag(Event event) {
-        // stub
+        printDivider();
+        System.out.print("Enter the name of the tag: ");
+        String tagName = this.scanner.nextLine();
+        printDivider();
+        if (journal.removeTag(event, tagName)) {
+            System.out.println("Tag successfully removed!");
+        } else {
+            System.out.println("Tag was not associated with this event to begin with!");
+        }
+        printDivider();
     }
 
     // EFFECTS: prints aggregate level statistics about user's journal
