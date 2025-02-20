@@ -104,20 +104,125 @@ public class TestJournal {
 
     @Test
     void testAddTagStringParameter() {
-        List<Tag> j1Tags;
-        assertEquals(t1.getName(), j1.addTag(t1.getName()).getName());
-        j1Tags = j1.getTags();
+        List<Tag> j1Tags = j1.getTags();
+        List<Tag> e1Tags = e1.getTags();
+        List<Tag> e2Tags = e2.getTags();
+        Tag currTag;
+
+        assertTrue(j1.addTag(e1, t1.getName()));
+        t1.addNewEvent();
         assertEquals(t1.getName(), j1Tags.get(0).getName());
         assertEquals(1, j1Tags.size());
-        assertEquals(t2.getName(), j1.addTag(t2.getName()).getName());
-        j1Tags = j1.getTags();
+        currTag = e1Tags.get(0);
+        assertEquals(t1.getName(), currTag.getName());
+        assertEquals(t1.getNumEvents(), currTag.getNumEvents());
+        assertEquals(1, e1Tags.size());
+
+        assertTrue(j1.addTag(e1, t2.getName()));
+        t2.addNewEvent();
         assertEquals(t1.getName(), j1Tags.get(0).getName());
         assertEquals(t2.getName(), j1Tags.get(1).getName());
         assertEquals(2, j1Tags.size());
-        assertEquals(j1Tags.get(0), j1.addTag(t1.getName()));
+        currTag = e1Tags.get(0);
+        assertEquals(t1.getName(), currTag.getName());
+        assertEquals(t1.getNumEvents(), currTag.getNumEvents());
+        currTag = e1Tags.get(1);
+        assertEquals(t2.getName(), currTag.getName());
+        assertEquals(t2.getNumEvents(), currTag.getNumEvents());
+        assertEquals(2, e1Tags.size());
+
+        assertTrue(j1.addTag(e2, t1.getName()));
+        t1.addNewEvent();
         assertEquals(t1.getName(), j1Tags.get(0).getName());
         assertEquals(t2.getName(), j1Tags.get(1).getName());
         assertEquals(2, j1Tags.size());
+        currTag = e2Tags.get(0);
+        assertEquals(t1.getName(), currTag.getName());
+        assertEquals(t1.getNumEvents(), currTag.getNumEvents());
+        assertEquals(1, e2Tags.size());
+
+        assertFalse(j1.addTag(e1, t1.getName()));
+        assertEquals(t1.getName(), j1Tags.get(0).getName());
+        assertEquals(t2.getName(), j1Tags.get(1).getName());
+        assertEquals(2, j1Tags.size());
+        currTag = e1Tags.get(0);
+        assertEquals(t1.getName(), currTag.getName());
+        assertEquals(t1.getNumEvents(), currTag.getNumEvents());
+        currTag = e1Tags.get(1);
+        assertEquals(t2.getName(), currTag.getName());
+        assertEquals(t2.getNumEvents(), currTag.getNumEvents());
+        assertEquals(2, e1Tags.size());
+    }
+
+
+    @Test
+    void testRemoveTagStringParameter() {
+        List<Tag> j1Tags = j1.getTags();
+        List<Tag> e1Tags = e1.getTags();
+        List<Tag> e2Tags = e2.getTags();
+        List<Tag> e3Tags = e3.getTags();
+        Tag currTag;
+
+        assertTrue(j1.addTag(e1, t1.getName()));
+        t1.addNewEvent();
+        assertEquals(t1.getName(), j1Tags.get(0).getName());
+        assertEquals(1, j1Tags.size());
+        currTag = e1Tags.get(0);
+        assertEquals(t1.getName(), currTag.getName());
+        assertEquals(t1.getNumEvents(), currTag.getNumEvents());
+        assertEquals(1, e1Tags.size());
+
+        assertTrue(j1.addTag(e1, t2.getName()));
+        t2.addNewEvent();
+        assertEquals(t1.getName(), j1Tags.get(0).getName());
+        assertEquals(t2.getName(), j1Tags.get(1).getName());
+        assertEquals(2, j1Tags.size());
+        currTag = e1Tags.get(0);
+        assertEquals(t1.getName(), currTag.getName());
+        assertEquals(t1.getNumEvents(), currTag.getNumEvents());
+        currTag = e1Tags.get(1);
+        assertEquals(t2.getName(), currTag.getName());
+        assertEquals(t2.getNumEvents(), currTag.getNumEvents());
+        assertEquals(2, e1Tags.size());
+
+        assertTrue(j1.addTag(e2, t2.getName()));
+        t2.addNewEvent();
+        assertEquals(t1.getName(), j1Tags.get(0).getName());
+        assertEquals(t2.getName(), j1Tags.get(1).getName());
+        assertEquals(2, j1Tags.size());
+        currTag = e2Tags.get(0);
+        assertEquals(t2.getName(), currTag.getName());
+        assertEquals(t2.getNumEvents(), currTag.getNumEvents());
+        assertEquals(1, e2Tags.size());
+
+        assertTrue(j1.addTag(e3, t1.getName()));
+        t1.addNewEvent();
+        assertEquals(t1.getName(), j1Tags.get(0).getName());
+        assertEquals(t2.getName(), j1Tags.get(1).getName());
+        assertEquals(2, j1Tags.size());
+        currTag = e3Tags.get(0);
+        assertEquals(t1.getName(), currTag.getName());
+        assertEquals(t1.getNumEvents(), currTag.getNumEvents());
+        assertEquals(1, e3Tags.size());
+        
+        assertFalse(j1.removeTag(e2, t1.getName()));
+        assertFalse(j1.removeTag(e1, t4.getName()));
+
+        assertTrue(j1.removeTag(e1, t1.getName()));
+        t1.removeEvent();
+        assertEquals(t1.getName(), j1Tags.get(0).getName());
+        assertEquals(t2.getName(), j1Tags.get(1).getName());
+        assertEquals(2, j1Tags.size());
+        currTag = e1Tags.get(0);
+        assertEquals(t2.getName(), currTag.getName());
+        assertEquals(t2.getNumEvents(), currTag.getNumEvents());
+        assertEquals(1, e1Tags.size());
+
+        assertTrue(j1.removeTag(e3, t1.getName()));
+        t1.removeEvent();
+        assertEquals(t2.getName(), j1Tags.get(0).getName());
+        assertEquals(1, j1Tags.size());
+        assertTrue(e3Tags.isEmpty());
     }
 
     @Test
