@@ -58,6 +58,15 @@ public class Event implements Writeable {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes given tag from list of tags if it is in list of tags, returning 
+    //          true if removed or false if it was not in list of tags to begin with. 
+    //          updates number of events tagged in tag
+    public boolean removeTag(Tag tag) {
+        // stub
+        return false;
+    }
+
     public String getQuote() {
         return quote;
     }
