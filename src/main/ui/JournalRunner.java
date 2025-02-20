@@ -335,6 +335,12 @@ public class JournalRunner {
         }
     }
 
+    // MODIFIES: this, day
+    // EFFECTS: uses user input to create a new event under the given day
+    public void deleteEvent(Day day) {
+        // stub
+    }
+
     // MODIFIES: this, event
     // EFFECTS: enters the loop for the event menu, displaying the event's
     //          characteristics and handling/processing inputs for the event menu
@@ -417,7 +423,7 @@ public class JournalRunner {
                 addTag(event);
                 break;
             case "r":
-                removeTag(event);
+                deleteTag(event);
                 break;
             case "s":
                 event.flipStar();
@@ -454,7 +460,7 @@ public class JournalRunner {
     // EFFECTS: removes tag from given event if tag is associated with given event.
     //          if tag was removed from event and tag no longer has any events 
     //          associated with it, deletes tag from journal
-    public void removeTag(Event event) {
+    public void deleteTag(Event event) {
         printDivider();
         System.out.print("Enter the name of the tag: ");
         String tagName = this.scanner.nextLine();
