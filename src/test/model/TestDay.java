@@ -56,16 +56,54 @@ public class TestDay {
 
     @Test
     void testAddEvent() {
-        List<Event> d1Events;
+        List<Event> d1Events = d1.getEvents();
+        List<Event> d2Events = d2.getEvents();
         d1.addEvent(e1);
-        d1Events = d1.getEvents();
         assertEquals(e1, d1Events.get(0));
         assertEquals(1, d1Events.size());
         d1.addEvent(e2);
-        d1Events = d1.getEvents();
         assertEquals(e1, d1Events.get(0));
         assertEquals(e2, d1Events.get(1));
         assertEquals(2, d1Events.size());
+        d2.addEvent(e3);
+        assertEquals(e3, d2Events.get(0));
+        assertEquals(1, d2Events.size());
+    }
+
+    @Test
+    void testRemoveEvent() {
+        List<Event> d1Events = d1.getEvents();
+        List<Event> d2Events = d2.getEvents();
+        d1.addEvent(e1);
+        assertEquals(e1, d1Events.get(0));
+        assertEquals(1, d1Events.size());
+        d1.addEvent(e2);
+        assertEquals(e1, d1Events.get(0));
+        assertEquals(e2, d1Events.get(1));
+        assertEquals(2, d1Events.size());
+        d1.removeEvent(e1);
+        assertEquals(e2, d1Events.get(0));
+        assertEquals(1, d1Events.size());
+        d1.removeEvent(e2);
+        assertTrue(d1Events.isEmpty());
+        d2.addEvent(e3);
+        assertEquals(e3, d2Events.get(0));
+        assertEquals(1, d2Events.size());
+        d2.removeEvent(e3);
+        assertTrue(d1Events.isEmpty());
+    }
+
+    @Test
+    void testGetEventFromTitle() {
+        assertNull(d1.getEventFromTitle("My home"));
+        assertNull(d1.getEventFromTitle("Grouse Trip!"));
+        d1.addEvent(e1);
+        assertEquals(e1, d1.getEventFromTitle("Grouse Trip!"));
+        assertNull(d1.getEventFromTitle("La Tour Eiffel"));
+        d1.addEvent(e2);
+        assertEquals(e1, d1.getEventFromTitle("Grouse Trip!"));
+        assertEquals(e2, d1.getEventFromTitle("La Tour Eiffel"));
+        assertNull(d1.getEventFromTitle("Tokyo at Night"));
     }
 
     @Test
