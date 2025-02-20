@@ -39,7 +39,7 @@ public class Tag implements Writeable {
     // MODIFIES: this
     // EFFECTS: subtracts one from number of events categorized under this tag
     public void removeEvent() {
-        // stub
+        numEvents--;
     }
 
     @Override
