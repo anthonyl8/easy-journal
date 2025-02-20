@@ -35,6 +35,13 @@ public class Tag implements Writeable {
         numEvents++;
     }
 
+    // REQUIRES: numEvents > 0
+    // MODIFIES: this
+    // EFFECTS: subtracts one from number of events categorized under this tag
+    public void removeEvent() {
+        // stub
+    }
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
