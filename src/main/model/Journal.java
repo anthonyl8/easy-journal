@@ -75,8 +75,12 @@ public class Journal implements Writeable {
     //          event if it has not yet been added to the event, returning true in
     //          this case and false if it has already been added to the event
     public boolean addTag(Event event, String tagName) {
-        // stub
-        return false;
+        Tag tagToAdd = getTagFromName(tagName);
+        if (tagToAdd == null) {
+            tagToAdd = new Tag(tagName);
+            tags.add(tagToAdd);
+        }
+        return event.addTag(tagToAdd);
     }
 
     // MODIFIES: this
@@ -84,7 +88,14 @@ public class Journal implements Writeable {
     //          removes it from list of tags and returns true. otherwise, returns
     //          false
     public boolean removeTag(Event event, String tagName) {
-        // stub
+        Tag tagToRemove = getTagFromName(tagName);
+        if (tagToRemove != null) {
+            boolean removed = event.removeTag(tagToRemove);
+            if (removed && tagToRemove.getNumEvents() == 0) {
+                tags.remove(tagToRemove);
+            }
+            return removed;
+        }
         return false;
     }
 
