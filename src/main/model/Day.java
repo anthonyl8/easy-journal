@@ -52,9 +52,10 @@ public class Day implements Writeable {
     }
 
     // REQUIRES: event is in list of events recorded under day
-    // EFFECTS: removes event from list of events recorded under day
+    // EFFECTS: destroys data in event and removes event from list of events recorded 
+    //          under day
     public void removeEvent(Event event) {
-        events.remove(event);
+        // stub
     }
 
     // EFFECTS: returns the event whose title matches the given event title, or null 
