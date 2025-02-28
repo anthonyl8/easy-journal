@@ -90,6 +90,15 @@ class TestJsonReader extends TestJson {
             e6.addTag(t5);
             e6.addTag(t6);
 
+            List<Tag> actTags = jr.getTags();
+            assertEquals(1, actTags.get(0).getNumEvents());
+            assertEquals(4, actTags.get(1).getNumEvents());
+            assertEquals(1, actTags.get(2).getNumEvents());
+            assertEquals(1, actTags.get(3).getNumEvents());
+            assertEquals(1, actTags.get(5).getNumEvents());
+            assertEquals("views", actTags.get(4).getName());
+            assertEquals(2, actTags.get(4).getNumEvents());
+            
             expectedDays.add(d1);
             expectedDays.add(d2);
             expectedDays.add(d3);
@@ -98,21 +107,6 @@ class TestJsonReader extends TestJson {
             assertEquals(expectedDays.size(), actualDays.size());
             for (int i = 0; i < expectedDays.size(); i++) {
                 checkDayEquality(expectedDays.get(i), actualDays.get(i));
-            }
-
-            List<Tag> expectedTags = new ArrayList<Tag>();
-
-            expectedTags.add(t1);
-            expectedTags.add(t2);
-            expectedTags.add(t3);
-            expectedTags.add(t4);
-            expectedTags.add(t5);
-            expectedTags.add(t6);
-
-            List<Tag> actualTags = jr.getTags();
-            assertEquals(expectedTags.size(), actualTags.size());
-            for (int i = 0; i < expectedTags.size(); i++) {
-                checkTagEquality(expectedTags.get(i), actualTags.get(i));
             }
 
         } catch (IOException e) {

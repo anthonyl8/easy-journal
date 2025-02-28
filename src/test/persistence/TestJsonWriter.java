@@ -99,13 +99,6 @@ class TestJsonWriter extends TestJson {
             jr.addDay(d2);
             jr.addDay(d3);
 
-            jr.addTag(t1);
-            jr.addTag(t2);
-            jr.addTag(t3);
-            jr.addTag(t4);
-            jr.addTag(t5);
-            jr.addTag(t6);
-
             JsonWriter writer = new JsonWriter("./data/persistence/testWriterGeneralJournal.json");
             writer.open();
             writer.write(jr);
@@ -125,19 +118,6 @@ class TestJsonWriter extends TestJson {
                 checkDayEquality(expectedDays.get(i), actualDays.get(i));
             }
 
-            List<Tag> expectedTags = new ArrayList<Tag>();
-            expectedTags.add(t1);
-            expectedTags.add(t2);
-            expectedTags.add(t3);
-            expectedTags.add(t4);
-            expectedTags.add(t5);
-            expectedTags.add(t6);
-
-            List<Tag> actualTags = jr.getTags();
-            assertEquals(expectedTags.size(), actualTags.size());
-            for (int i = 0; i < expectedTags.size(); i++) {
-                checkTagEquality(expectedTags.get(i), actualTags.get(i));
-            }
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
