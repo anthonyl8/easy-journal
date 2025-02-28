@@ -89,6 +89,20 @@ public class TestEvent {
     }
 
     @Test
+    void testRemoveAllTags() {
+        List<Tag> e1Tags = e1.getTags();
+        e1.addTag(t1);
+        e1.removeAllTags();
+        assertEquals(0, t1.getNumEvents());
+        assertTrue(e1Tags.isEmpty());
+        
+        e1.addTag(t1);
+        e1.addTag(t2);
+        e1.removeAllTags();
+        assertEquals(0, e1Tags.size());
+    }
+
+    @Test
     void testSortTags() {
         t1.addNewEvent();
         t2.addNewEvent();
