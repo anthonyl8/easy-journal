@@ -73,6 +73,19 @@ public class Journal implements Writeable {
     // EFFECTS: returns the tag whose name matches the given tag name, or null if no
     //          tag's name matches the given tag name
     public Tag getTagFromName(String tagName) {
+        List<Event> events;
+        List<Tag> eventTags;
+        for (Day day : days) {
+            events = day.getEvents();
+            for (Event event : events) {
+                eventTags = event.getTags();
+                for (Tag tag : eventTags) {
+                    if (tagName.equals(tag.getName())) {
+                        return tag;
+                    }
+                }
+            }
+        }
         return null;
     }
 
