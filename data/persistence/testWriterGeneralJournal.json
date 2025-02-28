@@ -1,0 +1,103 @@
+{"days": [
+    {
+        "date": 12,
+        "month": 5,
+        "year": 2024,
+        "events": [
+            {
+                "quote": "Presenting to judges after Cansat crashed...",
+                "starred": false,
+                "rating": 5,
+                "title": "Pre-Presentation",
+                "tags": [{
+                    "name": "feeling-okay",
+                    "numEvents": 1
+                }]
+            },
+            {
+                "quote": "We won! Europe-bound!",
+                "starred": true,
+                "rating": 9,
+                "title": "Cansat Win!",
+                "tags": [
+                    {
+                        "name": "travel",
+                        "numEvents": 4
+                    },
+                    {
+                        "name": "competition",
+                        "numEvents": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "date": 15,
+        "month": 6,
+        "year": 2024,
+        "events": [{
+            "quote": "Amsterdam train station!",
+            "starred": false,
+            "rating": 8,
+            "title": "Amsterdam Centraal",
+            "tags": [{
+                "name": "travel",
+                "numEvents": 4
+            }]
+        }]
+    },
+    {
+        "date": 7,
+        "month": 7,
+        "year": 2024,
+        "events": [
+            {
+                "quote": "Couldn't go inside, of course, but looks like repairs are going well!",
+                "starred": false,
+                "rating": 7,
+                "title": "Cathedrale Notre-Dame",
+                "tags": [{
+                    "name": "melancholy",
+                    "numEvents": 1
+                }]
+            },
+            {
+                "quote": "What a view...",
+                "starred": true,
+                "rating": 9,
+                "title": "Arc de Triomphe",
+                "tags": [
+                    {
+                        "name": "travel",
+                        "numEvents": 4
+                    },
+                    {
+                        "name": "views",
+                        "numEvents": 2
+                    }
+                ]
+            },
+            {
+                "quote": "Finally up on the Eiffel Tower!",
+                "starred": true,
+                "rating": 10,
+                "title": "La Tour Eiffel",
+                "tags": [
+                    {
+                        "name": "travel",
+                        "numEvents": 4
+                    },
+                    {
+                        "name": "views",
+                        "numEvents": 2
+                    },
+                    {
+                        "name": "core-memory",
+                        "numEvents": 1
+                    }
+                ]
+            }
+        ]
+    }
+]}
