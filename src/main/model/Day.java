@@ -55,7 +55,8 @@ public class Day implements Writeable {
     // EFFECTS: destroys data in event and removes event from list of events recorded 
     //          under day
     public void removeEvent(Event event) {
-        // stub
+        event.removeAllTags();
+        events.remove(event);
     }
 
     // EFFECTS: returns the event whose title matches the given event title, or null 
