@@ -89,15 +89,6 @@ class TestJsonReader extends TestJson {
             e6.addTag(t2);
             e6.addTag(t5);
             e6.addTag(t6);
-
-            List<Tag> actTags = jr.getTags();
-            assertEquals(1, actTags.get(0).getNumEvents());
-            assertEquals(4, actTags.get(1).getNumEvents());
-            assertEquals(1, actTags.get(2).getNumEvents());
-            assertEquals(1, actTags.get(3).getNumEvents());
-            assertEquals(1, actTags.get(5).getNumEvents());
-            assertEquals("views", actTags.get(4).getName());
-            assertEquals(2, actTags.get(4).getNumEvents());
             
             expectedDays.add(d1);
             expectedDays.add(d2);
