@@ -71,24 +71,42 @@ public class TestJournal {
         assertEquals(t2, tempTags.get(1));
         assertEquals(2, tempTags.size());
     }
-    
+
     @Test
     void testAddDay() {
-        List<Day> j1Days;
+        List<Day> j1Days = j1.getDays();
         assertTrue(j1.addDay(d1));
-        j1Days = j1.getDays();
         assertEquals(d1, j1Days.get(0));
         assertEquals(1, j1Days.size());
         assertTrue(j1.addDay(d2));
-        j1Days = j1.getDays();
         assertEquals(d1, j1Days.get(0));
         assertEquals(d2, j1Days.get(1));
         assertEquals(2, j1Days.size());
         assertFalse(j1.addDay(d1));
-        j1Days = j1.getDays();
         assertEquals(d1, j1Days.get(0));
         assertEquals(d2, j1Days.get(1));
         assertEquals(2, j1Days.size());
+    }
+
+    @Test
+    void testRemoveDay() {
+        List<Day> j1Days = j1.getDays();
+        assert(j1Days.isEmpty());
+        assertFalse(j1.removeDay(d1));
+        assert(j1Days.isEmpty());
+        j1.addDay(d1);
+        assertTrue(j1.removeDay(d1));
+        assertTrue(j1Days.isEmpty());
+        j1.addDay(d1);
+        j1.addDay(d2);
+        assertTrue(j1.removeDay(d1));
+        assertEquals(d2, j1Days.get(0));
+        assertEquals(1, j1Days.size());
+        assertFalse(j1.removeDay(d1));
+        assertEquals(d2, j1Days.get(0));
+        assertEquals(1, j1Days.size());
+        assertTrue(j1.removeDay(d2));
+        assertTrue(j1Days.isEmpty());
     }
 
     @Test
