@@ -112,7 +112,9 @@ public class JsonReader {
     }
 
     // MODIFIES: this, event
-    // EFFECTS: parses event from JSON object and adds it to event
+    // EFFECTS: parses tag from JSON object and adds it to event, creating 
+    //          a new tag only if a tag with the corresponding name does 
+    //          not already exist   
     private void addTagToEvent(Event event, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Tag tag = journal.getTagFromName(name);
