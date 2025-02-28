@@ -45,12 +45,21 @@ public class Journal implements Writeable {
     // EFFECTS: adds given day to list of days if it is not already in list of days,
     //          returning true if added or false if already in list of days.
     public boolean addDay(Day day) {
-        if (dateRecord(day.toString()) != null) {
+        if (days.contains(day)) {
             return false;
         } else {
             days.add(day);
             return true;
         } 
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes day corresponding to given date tfromlist of days if it is 
+    //          in list of days, returning true if removed or false if day was not
+    //          in list of days to begin
+    public boolean removeDay(Day day) {
+        // stub
+        return false;
     }
 
 
@@ -127,7 +136,6 @@ public class Journal implements Writeable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("days", daysToJson());
-        // json.put("tags", tagsToJson());
         return json;
     }
 
