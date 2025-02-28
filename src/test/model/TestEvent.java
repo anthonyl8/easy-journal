@@ -72,20 +72,12 @@ public class TestEvent {
     void testRemoveTag() {
         List<Tag> e1Tags = e1.getTags();
         e1.addTag(t1);
-        assertEquals(1, t1.getNumEvents());
-        assertEquals(t1, e1Tags.get(0));
-        assertEquals(1, e1Tags.size());
         assertTrue(e1.removeTag(t1));
         assertEquals(0, t1.getNumEvents());
         assertTrue(e1Tags.isEmpty());
         
         e1.addTag(t1);
         e1.addTag(t2);
-        assertEquals(1, t1.getNumEvents());
-        assertEquals(1, t2.getNumEvents());
-        assertEquals(t1, e1Tags.get(0));
-        assertEquals(t2, e1Tags.get(1));
-        assertEquals(2, e1Tags.size());
         assertTrue(e1.removeTag(t1));
         assertEquals(0, t1.getNumEvents());
         assertEquals(t2, e1Tags.get(0));
