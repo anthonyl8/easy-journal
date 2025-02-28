@@ -73,7 +73,9 @@ public class Event implements Writeable {
     // MODIFIES: this
     // EFFECTS: removes all tags from list of tags
     public void removeAllTags() {
-        // stub
+        for (int i = tags.size() - 1; i >= 0; i--) {
+            removeTag(tags.get(i));
+        }
     }
 
     public String getQuote() {
