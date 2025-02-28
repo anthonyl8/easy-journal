@@ -74,6 +74,7 @@ public class JournalRunner {
         System.out.println("Please select an option\n");
         System.out.println("[t]: Add today");
         System.out.println("[a]: Add a new day");
+        System.out.println("[d]: Delete a day");
         System.out.println("[e]: Select an existing day");
         System.out.println("[n]: View event statistics");
         System.out.println("[s]: Save journal to file");
@@ -92,6 +93,9 @@ public class JournalRunner {
                 break;
             case "a":
                 addNewDay();
+                break;
+            case "d":
+                deleteDay();
                 break;
             case "e":
                 selectDay();
@@ -164,7 +168,29 @@ public class JournalRunner {
     // MODIFIES: this
     // EFFECTS: deletes user given day from the journal
     public void deleteDay() {
-        // stub
+        List<Day> days = journal.getDays();
+        if (days.isEmpty()) {
+            System.out.println("No days recorded yet!");
+        } else {
+            System.out.println("These are the currently recorded days: ");
+            for (Day day : journal.getDays()) {
+                System.out.println(day);
+            }
+            System.out.print("\nPlease enter the day to delete: ");
+            String date = this.scanner.nextLine();
+            printDivider();
+            try {
+                sdf.parse(date);
+                Day day = journal.dateRecord(date);
+                if (journal.removeDay(day)) {
+                    System.out.println("Day was successfully deleted!");
+                } else {
+                    System.out.println("This day was not recorded to begin with!");
+                }
+            } catch (ParseException e) {
+                System.out.println("You entered an invalid date!");
+            }
+        }
     }
 
     // MODIFIES: this
@@ -243,8 +269,7 @@ public class JournalRunner {
     // EFFECTS: processes the user's input in the day menu
     public void handleDayCommands(String input, Day day) {
         for (Event event : day.getEvents()) {
-            String title = event.getTitle();
-            if (title.equals(input)) {
+            if (event.getTitle().equals(input)) {
                 enterEventMenu(event);
                 return;
             }
