@@ -153,13 +153,18 @@ public class JournalRunner {
         int year = Integer.valueOf(splitDate[0]);
         int month = Integer.valueOf(splitDate[1]);
         int date = Integer.valueOf(splitDate[2]);
-
         Day day = new Day(year, month, date);
         if (journal.addDay(day)) {
-            System.out.println(day + " was successfully recorded!");
+            System.out.println(yearMonthDate + " was successfully recorded!");
         } else {
-            System.out.println(day + " has already been added!");
+            System.out.println(yearMonthDate + " has already been added!");
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: deletes user given day from the journal
+    public void deleteDay() {
+        // stub
     }
 
     // MODIFIES: this
@@ -340,7 +345,7 @@ public class JournalRunner {
     }
 
     // MODIFIES: this, day
-    // EFFECTS: uses user input to create a new event under the given day
+    // EFFECTS: deletes a user selected event from the given day
     public void deleteEvent(Day day) {
         printDivider();
         System.out.print("Please enter the name of the event to delete: ");
