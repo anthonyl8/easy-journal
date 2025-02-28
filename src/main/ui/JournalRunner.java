@@ -507,8 +507,6 @@ public class JournalRunner {
 
     // MODIFIES: this, event
     // EFFECTS: removes tag from given event if tag is associated with given event.
-    //          if tag was removed from event and tag no longer has any events 
-    //          associated with it, deletes tag from journal
     public void deleteTag(Event event) {
         printDivider();
         System.out.print("Enter the name of the tag: ");

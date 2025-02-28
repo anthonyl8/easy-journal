@@ -47,7 +47,7 @@ public class Event implements Writeable {
     // MODIFIES: this
     // EFFECTS: adds given tag to list of tags if it is not already in list of tags,
     //          returning true if added or false if already in list of tags. updates 
-    //          number of events tagged in tag
+    //          number of events tagged in tag if tag was added to event
     public boolean addTag(Tag tag) {
         if (!(tags.contains(tag))) {
             tags.add(tag);
