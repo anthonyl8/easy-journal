@@ -229,7 +229,7 @@ public class JournalRunner {
         System.out.println("[event title]: view specified event");
         System.out.println("[i]: view most highly rated event in this day");
         System.out.println("[a]: add an event to this day");
-        System.out.println("[a]: remove an event from this day");
+        System.out.println("[d]: delete an event from this day");
         System.out.println("[q]: quit this day");
         printDivider();
     }
@@ -424,7 +424,7 @@ public class JournalRunner {
         System.out.println("Please select an option:\n");
 
         System.out.println("[a]: add a tag");
-        System.out.println("[r]: remove a tag");
+        System.out.println("[d]: delete a tag");
         System.out.println("[s]: star or unstar this event");
         System.out.println("[q]: quit this event");
         printDivider();
@@ -463,7 +463,11 @@ public class JournalRunner {
         System.out.print("Enter the name of the tag: ");
         String tagName = this.scanner.nextLine();
         printDivider();
-        if (journal.addTag(event, tagName)) {
+        Tag tagToAdd = journal.getTagFromName(tagName);
+        if (tagToAdd == null) {
+            event.addTag(new Tag(tagName));
+            System.out.println("Tag successfully added!");
+        } else if (event.addTag(tagToAdd)) {
             System.out.println("Tag successfully added!");
         } else {
             System.out.println("Tag already added!");
@@ -480,7 +484,8 @@ public class JournalRunner {
         System.out.print("Enter the name of the tag: ");
         String tagName = this.scanner.nextLine();
         printDivider();
-        if (journal.removeTag(event, tagName)) {
+        Tag tagToRemove = journal.getTagFromName(tagName);
+        if (tagToRemove != null && event.removeTag(tagToRemove)) {
             System.out.println("Tag successfully removed!");
         } else {
             System.out.println("Tag was not associated with this event to begin with!");
