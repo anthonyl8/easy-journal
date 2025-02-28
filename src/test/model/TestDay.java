@@ -22,6 +22,8 @@ public class TestDay {
     Event e1;
     Event e2;
     Event e3;
+    Tag t1;
+    Tag t2;
 
     @BeforeEach
     void runBefore() {
@@ -35,6 +37,8 @@ public class TestDay {
         e1 = new Event("Grouse Trip!", 7, "Climbed up, watched Indigenous dances, saw first bear!" /* , grouse */);
         e2 = new Event("La Tour Eiffel", 8, "Took the stairs, watched Parisian sunset!" /* , eiffelTower */);
         e3 = new Event("Tokyo at Night", 8, "This is insane" /* , tokyoStreet */);
+        t1 = new Tag("outdoors");
+        t2 = new Tag("winter");
     }
 
     @Test
@@ -75,11 +79,15 @@ public class TestDay {
         List<Event> d1Events = d1.getEvents();
         List<Event> d2Events = d2.getEvents();
         d1.addEvent(e1);
+        e1.addTag(t1);
+        e1.addTag(t2);
         d1.addEvent(e2);
         d1.removeEvent(e1);
+        assertTrue(e1.getTags().isEmpty());
         assertEquals(e2, d1Events.get(0));
         assertEquals(1, d1Events.size());
         d1.removeEvent(e2);
+        assertTrue(e2.getTags().isEmpty());
         assertTrue(d1Events.isEmpty());
         d2.addEvent(e3);
         d2.removeEvent(e3);
