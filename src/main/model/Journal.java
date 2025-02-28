@@ -12,18 +12,32 @@ import org.json.JSONObject;
 public class Journal implements Writeable {
 
     private List<Day> days;
-    private List<Tag> tags;
 
     public Journal() {
         days = new ArrayList<Day>();
-        tags = new ArrayList<Tag>();
     }
 
     public List<Day> getDays() {
         return days;
     }
 
+    // EFFECTS: returns a list of all tags recorded under any event in this journal,
+    //          ensuring that there are no duplicates in the list
     public List<Tag> getTags() {
+        List<Event> events;
+        List<Tag> eventTags;
+        List<Tag> tags = new ArrayList<Tag>();
+        for (Day day : days) {
+            events = day.getEvents();
+            for (Event event : events) {
+                eventTags = event.getTags();
+                for (Tag tag : eventTags) {
+                    if (!tags.contains(tag)) {
+                        tags.add(tag);
+                    }
+                }
+            }
+        }
         return tags;
     }
 
@@ -56,59 +70,9 @@ public class Journal implements Writeable {
         return null;
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds given tag to list of tags if it is not already in list of tags,
-    //          returning true if added or false if already in list of tags.
-    public boolean addTag(Tag tag) {
-        if (!tags.contains(tag)) {
-            tags.add(tag);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: given a tag name, creates a new tag with that name and adds it to 
-    //          list of tags if list of tags does not already contain a tag with 
-    //          that name. no matter what, adds this tag to list of tags in given
-    //          event if it has not yet been added to the event, returning true in
-    //          this case and false if it has already been added to the event
-    public boolean addTag(Event event, String tagName) {
-        Tag tagToAdd = getTagFromName(tagName);
-        if (tagToAdd == null) {
-            tagToAdd = new Tag(tagName);
-            tags.add(tagToAdd);
-        }
-        return event.addTag(tagToAdd);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: given a tag name, if there is a corresponding tag in list of tags
-    //          associated with given event, then removes that tag from list of tags.
-    //          if, after the tag was removed, the tag is no longer associated with
-    //          any events, removes tag from list of tags in journal. returns
-    //          true if the tag was removed from given event
-    public boolean removeTag(Event event, String tagName) {
-        Tag tagToRemove = getTagFromName(tagName);
-        if (tagToRemove != null) {
-            boolean removed = event.removeTag(tagToRemove);
-            if (removed && tagToRemove.getNumEvents() == 0) {
-                tags.remove(tagToRemove);
-            }
-            return removed;
-        }
-        return false;
-    }
-
     // EFFECTS: returns the tag whose name matches the given tag name, or null if no
     //          tag's name matches the given tag name
     public Tag getTagFromName(String tagName) {
-        for (Tag tag : tags) {
-            if (tag.getName().equals(tagName)) {
-                return tag;
-            }
-        }
         return null;
     }
 
@@ -138,6 +102,7 @@ public class Journal implements Writeable {
     // EFFECTS: gets top 3 most used tags in list of tags, or all tags in list
     //          (depending on which one is smaller)
     public List<Tag> getTopTags() {
+        List<Tag> tags = getTags();
         tags.sort((Tag t1, Tag t2) -> {
             return t2.getNumEvents() - t1.getNumEvents();
         });
@@ -149,7 +114,7 @@ public class Journal implements Writeable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("days", daysToJson());
-        json.put("tags", tagsToJson());
+        // json.put("tags", tagsToJson());
         return json;
     }
 
@@ -162,12 +127,4 @@ public class Journal implements Writeable {
         return jsonArray;
     }
 
-    // EFFECTS: returns tags in this journal as a JSON array
-    private JSONArray tagsToJson() {
-        JSONArray jsonArray = new JSONArray();
-        for (Tag tag : tags) {
-            jsonArray.put(tag.toJson());
-        }
-        return jsonArray;
-    }
 }
