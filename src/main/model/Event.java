@@ -70,6 +70,12 @@ public class Event implements Writeable {
         return removed;
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes all tags from list of tags
+    public void removeAllTags() {
+        // stub
+    }
+
     public String getQuote() {
         return quote;
     }
