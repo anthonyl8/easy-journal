@@ -52,27 +52,9 @@ public class JsonReader {
     // MODIFIES: this
     // EFFECTS: parses journal from JSON object and returns it
     private Journal parseJournal(JSONObject jsonObject) {
-        addTagsToJournal(jsonObject);
+        // addTagsToJournal(jsonObject);
         addDays(jsonObject);
         return journal;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: parses tags from JSON object and adds them to journal
-    private void addTagsToJournal(JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("tags");
-        for (Object json : jsonArray) {
-            JSONObject nextTag = (JSONObject) json;
-            addTagToJournal(nextTag);
-        }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: parses tag from JSON object and adds it to journal
-    private void addTagToJournal(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Tag tag = new Tag(name);
-        journal.addTag(tag);
     }
 
     // MODIFIES: this
@@ -92,8 +74,8 @@ public class JsonReader {
         int month = jsonObject.getInt("month");
         int date = jsonObject.getInt("date");
         Day day = new Day(year, month, date);
-        addEvents(day, jsonObject);
         journal.addDay(day);
+        addEvents(day, jsonObject);
     }
 
     // MODIFIES: this, day
@@ -115,8 +97,8 @@ public class JsonReader {
         Event event = new Event(title, rating, quote);
         boolean starred = jsonObject.getBoolean("starred");
         event.setStar(starred);
-        addTagsToEvent(event, jsonObject);
         day.addEvent(event);
+        addTagsToEvent(event, jsonObject);
     }
 
     // MODIFIES: this, event
@@ -134,6 +116,9 @@ public class JsonReader {
     private void addTagToEvent(Event event, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Tag tag = journal.getTagFromName(name);
+        if (tag == null) {
+            tag = new Tag(name);
+        }
         event.addTag(tag);
     }
 }
