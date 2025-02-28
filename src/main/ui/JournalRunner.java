@@ -85,6 +85,7 @@ public class JournalRunner {
 
     // MODIFIES: this
     // EFFECTS: processes the user's input in the main menu
+    @SuppressWarnings("methodlength")
     public void processMenuCommands(String input) {
         printDivider();
         switch (input) {
@@ -268,30 +269,39 @@ public class JournalRunner {
     // MODIFIES: this, day
     // EFFECTS: processes the user's input in the day menu
     public void handleDayCommands(String input, Day day) {
+        if (!handleEventTitle(input, day)) {
+            switch (input) {
+                case "i":
+                    viewHighlight(day);
+                    break;
+                case "a":
+                    addEvent(day);
+                    break;
+                case "d":
+                    deleteEvent(day);
+                    break;
+                case "q":
+                    break;
+                default:
+                    printDivider();
+                    System.out.println("Invalid option inputted. Please try again.");
+                    printDivider();
+                    break;
+            }
+        }
+    }
+
+    // MODIFIES: this, day
+    // EFFECTS: checks if user input in the day menu is an event title. if it is, enters
+    //          corresponding event's menu and returns true. otherwise, returns false.
+    public boolean handleEventTitle(String input, Day day) {
         for (Event event : day.getEvents()) {
             if (event.getTitle().equals(input)) {
                 enterEventMenu(event);
-                return;
+                return true;
             }
         }
-        switch (input) {
-            case "i":
-                viewHighlight(day);
-                break;
-            case "a":
-                addEvent(day);
-                break;
-            case "d":
-                deleteEvent(day);
-                break;
-            case "q":
-                break;
-            default:
-                printDivider();
-                System.out.println("Invalid option inputted. Please try again.");
-                printDivider();
-                break;
-        }
+        return false;
     }
 
     // EFFECTS: prints all the events recorded under the given day. if nothing
