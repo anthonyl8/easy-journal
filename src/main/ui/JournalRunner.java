@@ -154,12 +154,15 @@ public class JournalRunner {
     //          this day to list of days in journal if this date has not already
     //          been added
     public void recordDay(String yearMonthDate) {
-        String[] splitDate = yearMonthDate.split("-");
-        int year = Integer.valueOf(splitDate[0]);
-        int month = Integer.valueOf(splitDate[1]);
-        int date = Integer.valueOf(splitDate[2]);
-        Day day = new Day(year, month, date);
-        if (journal.addDay(day)) {
+        Day day = journal.dateRecord(yearMonthDate);
+        List<Day> days = journal.getDays();
+        if (!days.contains(day)) {
+            String[] splitDate = yearMonthDate.split("-");
+            int year = Integer.valueOf(splitDate[0]);
+            int month = Integer.valueOf(splitDate[1]);
+            int date = Integer.valueOf(splitDate[2]);
+            day = new Day(year, month, date);
+            days.add(day);
             System.out.println(yearMonthDate + " was successfully recorded!");
         } else {
             System.out.println(yearMonthDate + " has already been added!");
