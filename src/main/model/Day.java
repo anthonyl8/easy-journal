@@ -59,6 +59,12 @@ public class Day implements Writeable {
         events.remove(event);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes all events from list of events
+    public void removeAllEvents() {
+        // stub
+    }
+
     // EFFECTS: returns the event whose title matches the given event title, or null 
     //          if no event's title matches the given event title
     public Event getEventFromTitle(String eventTitle) {
