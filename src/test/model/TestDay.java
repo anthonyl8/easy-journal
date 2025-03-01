@@ -95,6 +95,20 @@ public class TestDay {
     }
 
     @Test
+    void testRemoveAllEvents() {
+        List<Event> d1Events = d1.getEvents();
+        d1.addEvent(e1);
+        d1.removeAllEvents();
+        assertTrue(d1Events.isEmpty());
+        d1.addEvent(e1);
+        e1.addTag(t1);
+        e1.addTag(t2);
+        d1.addEvent(e2);
+        d1.removeAllEvents();
+        assertTrue(d1Events.isEmpty());
+    }
+
+    @Test
     void testGetEventFromTitle() {
         assertNull(d1.getEventFromTitle("My home"));
         assertNull(d1.getEventFromTitle("Grouse Trip!"));
