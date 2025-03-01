@@ -186,7 +186,8 @@ public class JournalRunner {
             try {
                 sdf.parse(date);
                 Day day = journal.dateRecord(date);
-                if (journal.removeDay(day)) {
+                if (day != null) {
+                    journal.removeDay(day);
                     System.out.println("Day was successfully deleted!");
                 } else {
                     System.out.println("This day was not recorded to begin with!");
@@ -300,6 +301,7 @@ public class JournalRunner {
     public boolean handleEventTitle(String input, Day day) {
         for (Event event : day.getEvents()) {
             if (event.getTitle().equals(input)) {
+                printDivider();
                 enterEventMenu(event);
                 return true;
             }
