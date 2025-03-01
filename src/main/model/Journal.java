@@ -58,6 +58,7 @@ public class Journal implements Writeable {
     //          in list of days, returning true if removed or false if day was not
     //          in list of days to begin
     public boolean removeDay(Day day) {
+        day.removeAllEvents();
         return days.remove(day);
     }
 
