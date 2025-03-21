@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 // import javax.swing.ImageIcon;
 
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class TestDay {
 
@@ -19,6 +21,8 @@ public class TestDay {
     Day d2;
     Day d3;
     Day d4;
+    Day d5;
+    Day d6;
     Event e1;
     Event e2;
     Event e3;
@@ -31,6 +35,8 @@ public class TestDay {
         d2 = new Day(2023, 1, 2);
         d3 = new Day(2024, 10, 3);
         d4 = new Day(2024, 11, 19);
+        d5 = new Day(2025, 1, 19);
+        d6 = new Day(2025, 1, 20);
         // grouse = new ImageIcon("images/grouse-mountain.jpg").getImage();
         // eiffelTower = new ImageIcon("images/eiffel-tower.jpg").getImage();
         // tokyoStreet = new ImageIcon("images/tokyo-street.webp").getImage();
@@ -151,5 +157,21 @@ public class TestDay {
         assertEquals("2024-11-19", d4.toString());
     }
 
+    @Test
+    void testHashcode() {
+        Set<Day> hashSet = new HashSet<>();
+        hashSet.add(d1);
+    }
+
+    @Test
+    void testEquals() {
+        assertEquals(d1, d1);
+        assertFalse(d1.equals(null));
+        assertFalse(d1.equals(d2));
+        assertFalse(d2.equals(e1));
+        assertFalse(d5.equals(d1));
+        assertFalse(d4.equals(d3));
+        assertEquals(d1, d6);
+    }
 
 }
