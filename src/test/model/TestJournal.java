@@ -32,13 +32,10 @@ public class TestJournal {
         d3 = new Day(2024, 10, 3);
         d4 = new Day(2024, 11, 19);
         d5 = new Day(2025, 1, 19);
-        // grouse = new ImageIcon("images/grouse-mountain.jpg").getImage();
-        // eiffelTower = new ImageIcon("images/eiffel-tower.jpg").getImage();
-        // tokyoStreet = new ImageIcon("images/tokyo-street.webp").getImage();
-        e1 = new Event("Grouse Trip!", 7, "Climbed up, watched Indigenous dances, saw first bear!" /* , grouse */);
-        e2 = new Event("La Tour Eiffel", 8, "Took the stairs, watched Parisian sunset!" /* , eiffelTower */);
-        e3 = new Event("Tokyo at Night", 9, "This is insane" /* , tokyoStreet */);
-        e4 = new Event("At home", 10, "Look at us all together!" /* cool image */ );
+        e1 = new Event("Grouse Trip!", 7, "Climbed up, watched Indigenous dances, saw first bear!");
+        e2 = new Event("La Tour Eiffel", 8, "Took the stairs, watched Parisian sunset!", "./data/images/eiffel-tower.jpg");
+        e3 = new Event("Tokyo at Night", 9, "This is insane");
+        e4 = new Event("At home", 10, "Look at us all together!");
         t1 = new Tag("outdoors");
         t2 = new Tag("adventure");
         t3 = new Tag("core memory");
@@ -93,9 +90,9 @@ public class TestJournal {
     @Test
     void testRemoveDay() {
         List<Day> j1Days = j1.getDays();
-        assert(j1Days.isEmpty());
+        assertTrue(j1Days.isEmpty());
         assertFalse(j1.removeDay(d1));
-        assert(j1Days.isEmpty());
+        assertTrue(j1Days.isEmpty());
         j1.addDay(d1);
         assertTrue(j1.removeDay(d1));
         assertTrue(j1Days.isEmpty());

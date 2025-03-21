@@ -14,9 +14,6 @@ import java.util.HashSet;
 
 public class TestDay {
 
-    // Image grouse;
-    // Image eiffelTower;
-    // Image tokyoStreet;
     Day d1;
     Day d2;
     Day d3;
@@ -37,12 +34,9 @@ public class TestDay {
         d4 = new Day(2024, 11, 19);
         d5 = new Day(2025, 1, 19);
         d6 = new Day(2025, 1, 20);
-        // grouse = new ImageIcon("images/grouse-mountain.jpg").getImage();
-        // eiffelTower = new ImageIcon("images/eiffel-tower.jpg").getImage();
-        // tokyoStreet = new ImageIcon("images/tokyo-street.webp").getImage();
-        e1 = new Event("Grouse Trip!", 7, "Climbed up, watched Indigenous dances, saw first bear!" /* , grouse */);
-        e2 = new Event("La Tour Eiffel", 8, "Took the stairs, watched Parisian sunset!" /* , eiffelTower */);
-        e3 = new Event("Tokyo at Night", 8, "This is insane" /* , tokyoStreet */);
+        e1 = new Event("Grouse Trip!", 7, "Climbed up, watched Indigenous dances, saw first bear!");
+        e2 = new Event("La Tour Eiffel", 8, "Took the stairs, watched Parisian sunset!", "./data/images/eiffel-tower.jpg");
+        e3 = new Event("Tokyo at Night", 8, "This is insane");
         t1 = new Tag("outdoors");
         t2 = new Tag("winter");
     }

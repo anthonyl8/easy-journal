@@ -36,7 +36,6 @@ public class TestEvent {
         assertFalse(e2.isStarred());
         assertEquals("A night to remember ...", e2.getQuote());
         assertEquals("./data/images/eiffel-tower.jpg", e2.getImagePath());
-        // assertEquals(grouse, e1.getImage());
     }
 
     @Test
