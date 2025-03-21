@@ -37,6 +37,7 @@ public class TestJson {
         assertEquals(expected.getRating(), actual.getRating());
         assertEquals(expected.isStarred(), actual.isStarred());
         assertEquals(expected.getQuote(), actual.getQuote());
+        assertEquals(expected.getImagePath(), actual.getImagePath());
     }
 
     protected void checkTagEquality(Tag expected, Tag actual) {

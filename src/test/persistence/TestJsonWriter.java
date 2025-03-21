@@ -88,7 +88,7 @@ class TestJsonWriter extends TestJson {
             e5.addTag(t2);
             e5.addTag(t5);
 
-            Event e6 = new Event("La Tour Eiffel", 10, "Finally up on the Eiffel Tower!");
+            Event e6 = new Event("La Tour Eiffel", 10, "Finally up on the Eiffel Tower!", "./data/images/eiffel-tower.jpg");
             d3.addEvent(e6);
             e6.setStar(true);
             e6.addTag(t2);
