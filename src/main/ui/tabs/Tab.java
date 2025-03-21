@@ -19,6 +19,7 @@ public abstract class Tab extends JPanel {
         return controller;
     }
 
+    // MODIFIES: this
     // EFFECTS: reloads the tab to its initial state
     public abstract void reload();
 
