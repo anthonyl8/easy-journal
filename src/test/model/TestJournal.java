@@ -14,6 +14,7 @@ public class TestJournal {
     Day d2;
     Day d3;
     Day d4;
+    Day d5;
     Event e1;
     Event e2;
     Event e3;
@@ -30,6 +31,7 @@ public class TestJournal {
         d2 = new Day(2023, 1, 2);
         d3 = new Day(2024, 10, 3);
         d4 = new Day(2024, 11, 19);
+        d5 = new Day(2025, 1, 19);
         // grouse = new ImageIcon("images/grouse-mountain.jpg").getImage();
         // eiffelTower = new ImageIcon("images/eiffel-tower.jpg").getImage();
         // tokyoStreet = new ImageIcon("images/tokyo-street.webp").getImage();
@@ -138,6 +140,46 @@ public class TestJournal {
         assertEquals(t1, j1.getTagFromName("outdoors"));
         assertEquals(t2, j1.getTagFromName("adventure"));
         assertNull(j1.getTagFromName("core memory"));
+    }
+
+    @Test
+    void testSortDaysByTime() {
+        List<Day> days;
+
+        j1.addDay(d1);
+        days = j1.sortDaysByTime();
+        assertEquals(d1, days.get(0));
+        assertEquals(1, days.size());
+        
+        j1.addDay(d2);
+        days = j1.sortDaysByTime();
+        assertEquals(d1, days.get(0));
+        assertEquals(d2, days.get(1));
+        assertEquals(2, days.size());
+
+        j1.addDay(d3);
+        days = j1.sortDaysByTime();
+        assertEquals(d1, days.get(0));
+        assertEquals(d3, days.get(1));
+        assertEquals(d2, days.get(2));
+        assertEquals(3, days.size());
+
+        j1.addDay(d4);
+        days = j1.sortDaysByTime();
+        assertEquals(d1, days.get(0));
+        assertEquals(d4, days.get(1));
+        assertEquals(d3, days.get(2));
+        assertEquals(d2, days.get(3));
+        assertEquals(4, days.size());  
+
+        j1.addDay(d5);
+        days = j1.sortDaysByTime();
+        assertEquals(d5, days.get(0));
+        assertEquals(d1, days.get(1));
+        assertEquals(d4, days.get(2));
+        assertEquals(d3, days.get(3));
+        assertEquals(d2, days.get(4));
+        assertEquals(5, days.size()); 
     }
 
     @Test
