@@ -137,17 +137,20 @@ public class JournalRunnerGUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: Reloads journal to its starting view with updated data
     public void reload() {
         reloadHomeTab();
         reloadDaysTab();
     }
 
+    // MODIFIES: this
     // EFFECTS: Reloads home tab with updated data
     public void reloadHomeTab() {
         homeTab.reload();
     }
     
+    // MODIFIES: this
     // EFFECTS: Reloads days tab to its starting view with updated data
     public void reloadDaysTab() {
         daysTab.reload();

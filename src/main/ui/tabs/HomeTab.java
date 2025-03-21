@@ -13,6 +13,9 @@ import java.util.List;
 
 // SOURCE: Inspired by SmartHome Project
 
+// Represents the home tab: the initial tab that shows up when the user opens the application.
+// User is welcomed back to the application and shown statistics relating to their journal.
+
 public class HomeTab extends Tab {
 
     private static final String INIT_GREETING = "Welcome back! Here are your user statistics: ";
@@ -30,6 +33,7 @@ public class HomeTab extends Tab {
     }
 
     @Override
+    // MODIFIES: this
     // EFFECTS: reloads this page with updated statistics
     public void reload() {
         removeAll();
@@ -39,7 +43,8 @@ public class HomeTab extends Tab {
         placeTopTags();
     }
 
-    //EFFECTS: creates greeting at top of console
+    // MODIFIES: this
+    // EFFECTS: creates greeting at top of console
     private void placeGreeting() {
         JLabel greeting = new JLabel(INIT_GREETING, JLabel.CENTER);
         greeting.setSize(WIDTH, HEIGHT / 4);
@@ -47,6 +52,7 @@ public class HomeTab extends Tab {
         this.add(greeting);
     }
 
+    // MODIFIES: this
     // EFFECTS: displays days in user's journal with most events recorded. if no days
     //          added so far, tell user that no days have been recorded yet.
     public void placeMostEventfulDays() {
@@ -63,6 +69,7 @@ public class HomeTab extends Tab {
         add(eventfulDaysPanel);
     }
 
+    // MODIFIES: this
     // EFFECTS: displays most highly rated days in user's journal. if no days added
     //          so far, tell user that no days have been recorded yet.
     public void placeTopDays() {
@@ -79,6 +86,7 @@ public class HomeTab extends Tab {
         add(topDaysPanel);
     }
 
+    // MODIFIES: this
     // EFFECTS: displays most used tags for user's journal. if no tags added so far, 
     //          tell user that no tags have been recorded yet.
     public void placeTopTags() {
