@@ -91,10 +91,16 @@ public class JsonReader {
     // MODIFIES: this, day
     // EFFECTS: parses event from JSON object and adds it to day
     private void addEvent(Day day, JSONObject jsonObject) {
+        Event event;
         String title = jsonObject.getString("title");
         int rating = jsonObject.getInt("rating");
         String quote = jsonObject.getString("quote");
-        Event event = new Event(title, rating, quote);
+        try {
+            String imagePath = jsonObject.getString("image");
+            event = new Event(title, rating, quote, imagePath);
+        } catch (JSONException e) {
+            event = new Event(title, rating, quote);
+        }
         boolean starred = jsonObject.getBoolean("starred");
         event.setStar(starred);
         day.addEvent(event);
