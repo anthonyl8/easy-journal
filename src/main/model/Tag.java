@@ -43,6 +43,7 @@ public class Tag implements Writeable {
     }
 
     @Override
+    // EFFECTS: returns tag as a Json object with name and numEvents
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);

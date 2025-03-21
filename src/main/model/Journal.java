@@ -153,6 +153,7 @@ public class Journal implements Writeable {
     }
 
     @Override
+    // EFFECTS: returns journal as a Json object with list of days
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("days", daysToJson());

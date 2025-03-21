@@ -120,6 +120,8 @@ public class Event implements Writeable {
     }
 
     @Override
+    // EFFECTS: returns event as a Json object with title, list of tags, rating,
+    //          starred, quote, and image (if image exists)
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("title", title);

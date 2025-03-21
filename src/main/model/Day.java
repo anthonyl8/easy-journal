@@ -136,6 +136,7 @@ public class Day implements Writeable {
     }
 
     @Override
+    // EFFECTS: returns day as a Json object with year, month, and date
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("year", year);
