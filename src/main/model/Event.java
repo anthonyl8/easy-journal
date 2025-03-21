@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.awt.Image;
 
 // Represents an event that a user can record with a title, tags, a rating,
 // a starred status, a quote, and an image.
@@ -19,17 +18,29 @@ public class Event implements Writeable {
     private int rating;
     private boolean starred;
     private String quote;
-    private Image image;
+    private String imagePath;
 
-    // EFFECTS: Creates a new event with the given title, rating (out of 10), quote, 
-    //          and image. Event is initially unstarred and has an empty list of tags.
+    // EFFECTS: Creates a new event with the given title, rating (out of 10), and quote. 
+    //          Event is initially unstarred and has an empty list of tags.
     public Event(String title, int rating, String quote /* , Image image */) {
         this.title = title;
         this.tags = new ArrayList<Tag>();
         this.rating = rating;
         starred = false;
         this.quote = quote;
-        // this.image = image;
+        this.imagePath = null;
+    }
+
+    // REQUIRES: file path for image is a valid file path that points to an image that exists.
+    // EFFECTS: Creates a new event with the given title, rating (out of 10), quote, 
+    //          and image file path. Event is initially unstarred and has an empty list of tags.
+    public Event(String title, int rating, String quote, String imagePath) {
+        this.title = title;
+        this.tags = new ArrayList<Tag>();
+        this.rating = rating;
+        starred = false;
+        this.quote = quote;
+        this.imagePath = imagePath;
     }
 
     public String getTitle() {
@@ -82,9 +93,13 @@ public class Event implements Writeable {
         return quote;
     }
 
-    // public Image getImage() {
-    //     return image;
-    // }
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
 
     public boolean isStarred() {
         return starred;
@@ -116,6 +131,9 @@ public class Event implements Writeable {
         json.put("rating", rating);
         json.put("starred", starred);
         json.put("quote", quote);
+        if (imagePath != null) {
+            json.put("image", imagePath);
+        }
         return json;
     }
 
