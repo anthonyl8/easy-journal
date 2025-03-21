@@ -1,7 +1,7 @@
 package ui;
 
-public class GUIMain {
+public class MainGUI {
     public static void main(String[] args) throws Exception {
-        new GUIJournalRunner();
+        new JournalRunnerGUI();
     }
 }

@@ -1,7 +1,7 @@
 package ui;
 
-public class ConsoleMain {
+public class MainCLI {
     public static void main(String[] args) throws Exception {
-        new ConsoleJournalRunner();
+        new JournalRunnerCLI();
     }
 }

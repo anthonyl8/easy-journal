@@ -24,7 +24,7 @@ import exceptions.RatingOutOfBoundsException;
 //         the one I chose.
 
 // Represents an instance of the console based UI for EasyJournal.
-public class ConsoleJournalRunner {
+public class JournalRunnerCLI {
 
     private Journal journal;
 
@@ -37,7 +37,7 @@ public class ConsoleJournalRunner {
 
 
     // EFFECTS: creates an instance of the JournalRunner console UI application
-    public ConsoleJournalRunner() {
+    public JournalRunnerCLI() {
         init();
 
         printDivider();
@@ -177,9 +177,7 @@ public class ConsoleJournalRunner {
             System.out.println("No days recorded yet!");
         } else {
             System.out.println("These are the currently recorded days: ");
-            for (Day day : journal.getDays()) {
-                System.out.println(day);
-            }
+            days.forEach(day -> System.out.println(day));
             System.out.print("\nPlease enter the day to delete: ");
             String date = this.scanner.nextLine();
             printDivider();
