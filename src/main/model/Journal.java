@@ -98,6 +98,26 @@ public class Journal implements Writeable {
         return null;
     }
 
+    // EFFECTS: returns list of days sorted by most recent year, then most recent month,
+    //          then least recent date
+    public List<Day> sortDaysByTime() {
+        days.sort((Day d1, Day d2) -> {
+            int yearResult = d2.getYear() - d1.getYear();
+            if (yearResult != 0) {
+                return yearResult;
+            } else {
+                int monthResult = d2.getMonth() - d1.getMonth();
+                if (monthResult != 0) {
+                    return monthResult;
+                } else {
+                    int dateResult = d1.getDate() - d2.getDate();
+                    return dateResult;
+                }
+            }
+        });
+        return days;
+    }
+    
     // REQUIRES: at least one day in list of days
     // EFFECTS: gets top 3 days with most events recorded under them, or all days in
     //          list (depending on which one is smaller)
