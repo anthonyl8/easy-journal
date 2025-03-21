@@ -103,7 +103,7 @@ public class JournalRunnerGUI extends JFrame {
         navBar.add(homeTab, HOME_TAB_INDEX);
         navBar.setTitleAt(HOME_TAB_INDEX, "Home");
         navBar.add(daysTabScroller, DAYS_TAB_INDEX);
-        navBar.setTitleAt(DAYS_TAB_INDEX, "Settings");
+        navBar.setTitleAt(DAYS_TAB_INDEX, "My Days");
 
         add(navBar);
     }
