@@ -4,6 +4,8 @@ import javax.swing.*;
 
 import ui.JournalRunnerGUI;
 
+// SOURCE: Inspired by SmartHome Project
+
 public abstract class Tab extends JPanel {
 
     private final JournalRunnerGUI controller;

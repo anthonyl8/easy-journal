@@ -11,6 +11,8 @@ import model.Tag;
 import java.awt.*;
 import java.util.List;
 
+// SOURCE: Inspired by SmartHome Project
+
 public class HomeTab extends Tab {
 
     private static final String INIT_GREETING = "Welcome back! Here are your user statistics: ";

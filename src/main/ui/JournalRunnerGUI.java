@@ -19,6 +19,8 @@ import ui.tabs.DaysTab;
 import ui.tabs.HomeTab;
 import ui.tabs.Tab;
 
+// SOURCE: Inspired by SmartHome Project
+
 // Represents an instance of the GUI based UI for EasyJournal.
 public class JournalRunnerGUI extends JFrame {
 
