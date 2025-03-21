@@ -28,6 +28,7 @@ public class HomeTab extends Tab {
     }
 
     @Override
+    // EFFECTS: reloads this page with updated statistics
     public void reload() {
         removeAll();
         placeGreeting();
