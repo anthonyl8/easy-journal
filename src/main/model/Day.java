@@ -166,19 +166,25 @@ public class Day implements Writeable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        } 
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Day other = (Day) obj;
-        if (year != other.year)
+        if (year != other.year) {
             return false;
-        if (month != other.month)
+        }
+        if (month != other.month) {
             return false;
-        if (date != other.date)
+        }
+        if (date != other.date) {
             return false;
+        }
         return true;
     }
 
