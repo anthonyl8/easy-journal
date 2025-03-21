@@ -105,7 +105,8 @@
                     ],
                     "rating": 10,
                     "starred": true,
-                    "quote": "Finally up on the Eiffel Tower!"
+                    "quote": "Finally up on the Eiffel Tower!",
+                    "image": "./data/images/eiffel-tower.jpg"
                 }
             ]
         }

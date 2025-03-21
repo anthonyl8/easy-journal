@@ -79,6 +79,7 @@
                 ]
             },
             {
+                "image": "./data/images/eiffel-tower.jpg",
                 "quote": "Finally up on the Eiffel Tower!",
                 "starred": true,
                 "rating": 10,
