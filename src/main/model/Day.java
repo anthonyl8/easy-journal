@@ -153,4 +153,34 @@ public class Day implements Writeable {
         }
         return jsonArray;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + year;
+        result = prime * result + month;
+        result = prime * result + date;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Day other = (Day) obj;
+        if (year != other.year)
+            return false;
+        if (month != other.month)
+            return false;
+        if (date != other.date)
+            return false;
+        return true;
+    }
+
+    
 }
