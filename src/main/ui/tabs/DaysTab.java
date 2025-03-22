@@ -312,6 +312,7 @@ public class DaysTab extends Tab {
                 }
             }
         }
+        loadAverageRatingButton();
     }
 
     // MODIFIES: this
@@ -334,6 +335,23 @@ public class DaysTab extends Tab {
         addEventButton.setFont(REGULAR_FONT);
         addEventButton.addActionListener(e -> loadAddEventPrompt());
         this.add(addEventButton);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads show average rating button and adds it to this with font set to REGULAR_FONT.
+    //          adds ActionListener that loads average rating and adds it to this if button clicked.
+    public void loadAverageRatingButton() {
+        JButton averageRatingButton = new JButton("Show Average Rating");
+        averageRatingButton.setFont(REGULAR_FONT);
+        averageRatingButton.addActionListener(e -> {
+            remove(averageRatingButton);
+            JLabel averageRating = new JLabel("Average Rating: " + currentDay.getAverageRating() + "/10");
+            averageRating.setFont(REGULAR_FONT);
+            add(averageRating);
+            revalidate();
+            repaint();
+        });
+        this.add(averageRatingButton);
     }
 
     // MODIFIES: this
