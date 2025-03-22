@@ -37,3 +37,24 @@ prompted to save my recorded journal to file and have the *option* to do so or
 not
 - when I start the application, I want to be given the *option* to load my 
 previously recorded journal from file
+
+# Instructions for End User
+
+- You can generate the first required action related to the user story "adding 
+multiple Xs to a Y" by clicking into the "My Days" tab, clicking on the date 
+associated with existing day to enter that day (or add a day first), and then
+clicking on the "Add Event" button at the top of the screen.
+- You can generate the second required action related to the user story "adding 
+multiple Xs to a Y" by clicking into the "My Days" tab, clicking on the date 
+associated with existing day to enter that day (or add a day first), and then
+scrolling to the bottom and clicking "show average rating" to show the average
+rating of that day.
+- You can locate my visual component by clicking into the "My Days" tab, 
+clicking on the date associated with existing day to enter that day (or add a 
+day first), viewing existing events that do have images, or adding an event to
+a day with your own image (stored in the project folder) and viewing the event 
+under the day.
+- You can save the state of my application by going to the menu bar at the top,
+clicking "Options", and then selecting the "Save" menu item.
+- You can reload the state of my application by going to the menu bar at the 
+top, clicking "Options", and then selecting the "Load" menu item.
