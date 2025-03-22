@@ -6,6 +6,7 @@ import ui.JournalRunnerGUI;
 
 // SOURCE: Inspired by SmartHome Project
 
+// Represents a tab in a JTabbedPane in the JournalRunnerGUI
 public abstract class Tab extends JPanel {
 
     private final JournalRunnerGUI controller;

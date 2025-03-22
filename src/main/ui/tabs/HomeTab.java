@@ -15,7 +15,6 @@ import java.util.List;
 
 // Represents the home tab: the initial tab that shows up when the user opens the application.
 // User is welcomed back to the application and shown statistics relating to their journal.
-
 public class HomeTab extends Tab {
 
     private static final String INIT_GREETING = "Welcome back! Here are your user statistics: ";

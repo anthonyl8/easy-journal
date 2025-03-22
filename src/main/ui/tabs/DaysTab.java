@@ -41,7 +41,6 @@ import ui.JournalRunnerGUI;
 // Represents the tab where all of the action takes place, where the user can add a
 // day, an event, edit an event by starring/unstarring it, and adding tags to an event.
 // Possesses JDialogs when user input is necessary.
-
 public class DaysTab extends Tab {
     private static final Font TITLE_FONT = new Font("MV Boli", Font.PLAIN, 50);
     private static final Font YEAR_FONT = new Font("Times New Roman", Font.BOLD, 40);
