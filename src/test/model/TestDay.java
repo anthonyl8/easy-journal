@@ -14,17 +14,17 @@ import java.util.HashSet;
 
 public class TestDay {
 
-    Day d1;
-    Day d2;
-    Day d3;
-    Day d4;
-    Day d5;
-    Day d6;
-    Event e1;
-    Event e2;
-    Event e3;
-    Tag t1;
-    Tag t2;
+    private Day d1;
+    private Day d2;
+    private Day d3;
+    private Day d4;
+    private Day d5;
+    private Day d6;
+    private Event e1;
+    private Event e2;
+    private Event e3;
+    private Tag t1;
+    private Tag t2;
 
     @BeforeEach
     void runBefore() {

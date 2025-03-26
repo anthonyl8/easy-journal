@@ -9,10 +9,10 @@ import java.util.List;
 
 public class TestEvent {
 
-    Event e1;
-    Event e2;
-    Tag t1;
-    Tag t2;
+    private Event e1;
+    private Event e2;
+    private Tag t1;
+    private Tag t2;
 
     @BeforeEach
     void runBefore() {

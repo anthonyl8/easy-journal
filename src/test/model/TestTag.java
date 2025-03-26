@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class TestTag {
 
-    Tag t1;
-    Tag t2;
+    private Tag t1;
+    private Tag t2;
 
     @BeforeEach
     void runBefore() {

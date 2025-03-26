@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 // SOURCE: Tests based on JSON Serialization Demo
-class TestJsonReader extends TestJson {
+public class TestJsonReader extends TestJson {
 
-    Journal jr;
+    private Journal jr;
 
     @Test
     void testReaderNonExistentFile() {

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 // SOURCE: Tests based on JSON Serialization Demo
 class TestJsonWriter extends TestJson {
 
-    Journal jr;
+    private Journal jr;
 
     @Test
     void testWriterInvalidFile() {
