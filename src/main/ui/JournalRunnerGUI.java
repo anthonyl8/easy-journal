@@ -11,7 +11,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import model.EventLog;
+import model.EventToLog;
 import model.Journal;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -66,6 +70,15 @@ public class JournalRunnerGUI extends JFrame {
         loadTabs();
 
         setVisible(true);
+
+        addWindowListener(new WindowAdapter() {
+                            
+            // Anonymous class to override windowClosing event
+            public void windowClosing(WindowEvent e){
+                terminate();
+            }
+
+        });
     }
 
     // MODIFIES: this
@@ -82,7 +95,7 @@ public class JournalRunnerGUI extends JFrame {
 
         loadItem.addActionListener(e -> loadJournal());
         saveItem.addActionListener(e -> saveJournal());
-        exitItem.addActionListener(e -> System.exit(0));
+        exitItem.addActionListener(e -> terminate());
 
         optionsMenu.add(loadItem);
         optionsMenu.add(saveItem);
@@ -174,6 +187,16 @@ public class JournalRunnerGUI extends JFrame {
                     JOptionPane.ERROR_MESSAGE
             );
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: prints all logged events to console, closes the window, and exits the program
+    public void terminate() {
+        dispose();
+        for (EventToLog etl : EventLog.getInstance()) {
+            System.out.println(etl.getDescription());
+        }
+        System.exit(0);
     }
     
 }
