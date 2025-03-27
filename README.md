@@ -38,7 +38,7 @@ not
 - when I start the application, I want to be given the *option* to load my 
 previously recorded journal from file
 
-# Instructions for End User
+## Instructions for End User
 
 - You can generate the first required action related to the user story "adding 
 multiple Xs to a Y" by clicking into the "My Days" tab, clicking on the date 
@@ -59,7 +59,7 @@ clicking "Options", and then selecting the "Save" menu item.
 - You can reload the state of my application by going to the menu bar at the 
 top, clicking "Options", and then selecting the "Load" menu item.
 
-# Phase 4: Task 2
+## Phase 4: Task 2
 Here is a representative sample of the events that occur when my program runs:
 - Day added to journal!
 - Day added to journal!
@@ -73,7 +73,7 @@ Here is a representative sample of the events that occur when my program runs:
 - Tag added to event!
 - Tag added to event!
 
-# Phase 4: Task 3
+## Phase 4: Task 3
 In the future, I would love to refactor many aspects of my UI. Specifically, 
 I'd refactor my big console UI class to be a few smaller classes, each with
 their own responsibilities. I would also refactor the DaysTab class in my GUI
