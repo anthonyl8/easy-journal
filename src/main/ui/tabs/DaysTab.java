@@ -42,6 +42,7 @@ import ui.JournalRunnerGUI;
 // day, an event, edit an event by starring/unstarring it, and adding tags to an event.
 // Possesses JDialogs when user input is necessary.
 public class DaysTab extends Tab {
+    
     private static final Font TITLE_FONT = new Font("MV Boli", Font.PLAIN, 50);
     private static final Font YEAR_FONT = new Font("Times New Roman", Font.BOLD, 40);
     private static final Font MONTH_FONT = new Font("Calibri", Font.ITALIC, 32);
@@ -186,7 +187,6 @@ public class DaysTab extends Tab {
             @Override
             public void mouseClicked(MouseEvent e) {
                 currentDay = getController().getJournal().dateRecord(dateLabel.getName());
-                System.out.println("hi");
                 loadDayScreen();
             }
 
