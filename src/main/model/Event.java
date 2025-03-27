@@ -63,6 +63,7 @@ public class Event implements Writeable {
         if (!(tags.contains(tag))) {
             tags.add(tag);
             tag.addNewEvent();
+            EventLog.getInstance().logEventToLog(new EventToLog("Tag added to event!"));
             return true;
         } else {
             return false;
@@ -77,6 +78,7 @@ public class Event implements Writeable {
         boolean removed = tags.remove(tag);
         if (removed) {
             tag.removeEvent();
+            EventLog.getInstance().logEventToLog(new EventToLog("Tag removed from event!"));
         }
         return removed;
     }
@@ -108,6 +110,7 @@ public class Event implements Writeable {
     // MODIFIES: this
     // EFFECTS: flips starred status of event
     public void flipStar() {
+        EventLog.getInstance().logEventToLog(new EventToLog("Star status flipped from " + starred + " to " + !starred + "!"));
         starred = !starred;
     }
 

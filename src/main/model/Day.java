@@ -49,6 +49,7 @@ public class Day implements Writeable {
     // EFFECTS: adds event to list of events recorded under day
     public void addEvent(Event event) {
         events.add(event);
+        EventLog.getInstance().logEventToLog(new EventToLog("Event added to day!"));
     }
 
     // REQUIRES: event is in list of events recorded under day
@@ -57,6 +58,7 @@ public class Day implements Writeable {
     public void removeEvent(Event event) {
         event.removeAllTags();
         events.remove(event);
+        EventLog.getInstance().logEventToLog(new EventToLog("Event removed from day!"));
     }
 
     // MODIFIES: this

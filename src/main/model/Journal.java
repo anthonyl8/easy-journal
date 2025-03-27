@@ -49,6 +49,7 @@ public class Journal implements Writeable {
             return false;
         } else {
             days.add(day);
+            EventLog.getInstance().logEventToLog(new EventToLog("Day added to journal!"));
             return true;
         } 
     }
@@ -59,6 +60,7 @@ public class Journal implements Writeable {
     //          in list of days to begin
     public boolean removeDay(Day day) {
         day.removeAllEvents();
+        EventLog.getInstance().logEventToLog(new EventToLog("Day removed from journal!"));
         return days.remove(day);
     }
 
