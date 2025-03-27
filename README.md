@@ -58,3 +58,30 @@ under the day.
 clicking "Options", and then selecting the "Save" menu item.
 - You can reload the state of my application by going to the menu bar at the 
 top, clicking "Options", and then selecting the "Load" menu item.
+
+# Phase 4: Task 2
+Here is a representative sample of the events that occur when my program runs:
+- Day added to journal!
+- Day added to journal!
+- Event added to day!
+- Event's star status flipped from false to true!
+- Tag added to event!
+- Tag added to event!
+- Event added to day!
+- Event's star status flipped from false to true!
+- Event's star status flipped from true to false!
+- Tag added to event!
+- Tag added to event!
+
+# Phase 4: Task 3
+In the future, I would love to refactor many aspects of my UI. Specifically, 
+I'd refactor my big console UI class to be a few smaller classes, each with
+their own responsibilities. I would also refactor the DaysTab class in my GUI
+to separate the two entirely different pages that are drawn onto the same tab.
+
+Additionally, I would refactor some of the methods that I have to eliminate
+duplicate code. For instance, right now, in my DaysTab class, I have many 
+methods that create a button, and these buttons are essentially initialized in
+the same way except for their text. I would love to refactor this code so that
+I have a single method that creates this type of button, taking parameters when
+necessary.
