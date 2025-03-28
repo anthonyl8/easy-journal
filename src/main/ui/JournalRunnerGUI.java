@@ -72,8 +72,8 @@ public class JournalRunnerGUI extends JFrame {
         setVisible(true);
 
         addWindowListener(new WindowAdapter() {
-                            
-            // Anonymous class to override windowClosing event
+            
+            @Override
             public void windowClosing(WindowEvent e){
                 terminate();
             }
