@@ -11,49 +11,50 @@ import java.util.Iterator;
  * to the single instance of the EventLog.
  */
 public class EventLog implements Iterable<EventToLog> {
-	/** the only EventLog in the system (Singleton Design Pattern) */
-	private static EventLog theLog;
-	private Collection<EventToLog> eventsToLog;
-	
-	/** 
-	 * Prevent external construction.
-	 * (Singleton Design Pattern).
-	 */
-	private EventLog() {
-		eventsToLog = new ArrayList<EventToLog>();
-	}
-	
-	/**
-	 * Gets instance of EventLog - creates it
-	 * if it doesn't already exist.
-	 * (Singleton Design Pattern)
-	 * @return  instance of EventLog
-	 */
-	public static EventLog getInstance() {
-		if (theLog == null)
-			theLog = new EventLog();
-		
-		return theLog;
-	}
-	
-	/**
-	 * Adds an event to the event log.
-	 * @param e the event to be added
-	 */
-	public void logEventToLog(EventToLog e) {
-		eventsToLog.add(e);
-	}
-	
-	/**
-	 * Clears the event log and logs the event.
-	 */
-	public void clear() {
-		eventsToLog.clear();
-		logEventToLog(new EventToLog("Event log cleared."));
-	}
-	
-	@Override
-	public Iterator<EventToLog> iterator() {
-		return eventsToLog.iterator();
-	}
+    /** the only EventLog in the system (Singleton Design Pattern) */
+    private static EventLog theLog;
+    private Collection<EventToLog> eventsToLog;
+
+    /** 
+     * Prevent external construction.
+     * (Singleton Design Pattern).
+     */
+    private EventLog() {
+        eventsToLog = new ArrayList<EventToLog>();
+    }
+
+    /**
+     * Gets instance of EventLog - creates it
+     * if it doesn't already exist.
+     * (Singleton Design Pattern)
+     * @return  instance of EventLog
+     */
+    public static EventLog getInstance() {
+        if (theLog == null) {
+            theLog = new EventLog();
+        }
+        
+        return theLog;
+    }
+
+    /**
+     * Adds an event to the event log.
+     * @param e the event to be added
+     */
+    public void logEventToLog(EventToLog e) {
+        eventsToLog.add(e);
+    }
+
+    /**
+     * Clears the event log and logs the event.
+     */
+    public void clear() {
+        eventsToLog.clear();
+        logEventToLog(new EventToLog("Event log cleared."));
+    }
+
+    @Override
+    public Iterator<EventToLog> iterator() {
+        return eventsToLog.iterator();
+    }
 }

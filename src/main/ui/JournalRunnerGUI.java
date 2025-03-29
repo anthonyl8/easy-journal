@@ -74,7 +74,7 @@ public class JournalRunnerGUI extends JFrame {
         addWindowListener(new WindowAdapter() {
             
             @Override
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 terminate();
             }
 

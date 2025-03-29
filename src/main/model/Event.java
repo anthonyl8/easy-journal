@@ -110,7 +110,8 @@ public class Event implements Writeable {
     // MODIFIES: this
     // EFFECTS: flips starred status of event
     public void flipStar() {
-        EventLog.getInstance().logEventToLog(new EventToLog("Event's star status flipped from " + starred + " to " + !starred + "!"));
+        EventLog.getInstance().logEventToLog(
+            new EventToLog("Event's star status flipped from " + starred + " to " + !starred + "!"));
         starred = !starred;
     }
 
