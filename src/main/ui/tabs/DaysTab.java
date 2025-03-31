@@ -69,8 +69,8 @@ public class DaysTab extends Tab {
     private ImageIcon emptyStar;
     private ImageIcon star;
 
-    // REQUIRES: SmartHomeUI controller that holds this tab
-    // EFFECTS: creates report tab with buttons and application status functionality
+    // REQUIRES: JournalRunnerGUI controller that holds this tab
+    // EFFECTS: creates days tab with days and initializes necessary variables
     public DaysTab(JournalRunnerGUI controller) {
         super(controller);
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.PAGE_AXIS); 
