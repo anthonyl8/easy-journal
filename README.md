@@ -59,8 +59,7 @@ clicking "Options", and then selecting the "Save" menu item.
 - You can reload the state of my application by going to the menu bar at the 
 top, clicking "Options", and then selecting the "Load" menu item.
 
-## Phase 4: Task 2
-Here is a representative sample of the events that occur when my program runs:
+## Representative Sample of Logged Events
 - Day added to journal!
 - Day added to journal!
 - Event added to day!
@@ -73,7 +72,7 @@ Here is a representative sample of the events that occur when my program runs:
 - Tag added to event!
 - Tag added to event!
 
-## Phase 4: Task 3
+## Future Considerations
 In the future, I would love to refactor many aspects of my UI. Specifically, 
 I'd refactor my big console UI class to be a few smaller classes, each with
 their own responsibilities. I would also refactor the DaysTab class in my GUI
