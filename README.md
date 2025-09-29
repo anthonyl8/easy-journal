@@ -1,6 +1,6 @@
 # EasyJournal
 
-## 5-minute summaries of cool events in life
+## 1-minute summaries of cool events in life
 
 I've realized recently that I can be quite forgetful about day-to-day events. 
 One solution to this would, of course, be to start writing in a journal or a
